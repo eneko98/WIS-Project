@@ -1,5 +1,200 @@
 <html>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Events</title>
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom CSS -->
+      <style>
+        /* Custom CSS */
+        .header {
+          background-image: url('https://i.pinimg.com/564x/78/98/f1/7898f1b2f2c32658702684236a397575.jpg');
+          background-size: cover;
+          color: white;
+          text-align: left;
+          align-items: center;
+          height: 40vh;
+          display: flex;
+        }
+    
+        .filter-section {
+          margin-top: 20px;
+          text-align: left;
+        }
+    
+        .event-image {
+          max-width: 200px;
+          height: 200px;
+        }
+    
+        .event-info {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+    
+        .date-container {
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+        }
+    
+        .event-content {
+          margin-left: 20px;
+        }
+
+        .event-list {
+            align-items: center;
+        }
+      </style>
+    </head>
     <body>
-        <p> events PAGE </p>
+      <!-- Header Section -->
+      <div class="header">
+        <h1>Events</h1>
+      </div>
+      <!-- Filter Section -->
+      <div class="container filter-section">
+        <div class="row">
+          <div class="col-md-2">
+            <p>Filter</p>
+          </div>
+          <div class="col-md-2">
+            <select id="artistFilter" onchange="filterEvents()">
+              <option value="All">Artists</option>
+              <option value="Artist Name 1">Artist Name 1</option>
+              <option value="Artist Name 2">Artist Name 2</option>
+              <option value="Artist Name 3">Artist Name 3</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <select id="locationFilter" onchange="filterEvents()">
+              <option value="All">Location</option>
+              <option value="Location 1">Location 1</option>
+              <option value="Location 2">Location 2</option>
+              <option value="Location 3">Location 3</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <select id="timeFilter" onchange="filterEvents()">
+              <option value="All">Time</option>
+              <option value="May">May</option>
+              <option value="June">June</option>
+              <option value="July">July</option>
+              <option value="August">August</option>
+              <option value="September">September</option>
+              <option value="October">October</option>
+              <option value="November">November</option>
+              <option value="December">December</option>
+            </select>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+      </div>
+      <!-- Event Section -->
+<div class="container">
+    <!-- Event 1 -->
+    <div class="row" id="event1">
+      <div class="col-sm-2 align-self-center">
+        <img src="event1.jpg" class="event-image">
+      </div>
+      <div class="col-sm-2 align-self-center">
+        <div class="date-container">
+          <span class="day">01</span>
+          <span class="month">Mar</span>
+        </div>
+      </div>
+      <div class="col-sm-4 align-self-center">
+        <div class="event-info">
+          <div class="event-content">
+            <p><a href="#" class="artist-link">Artist Name 1</a></p>
+            <p class="location">Location 1</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3 align-self-center">
+        <button class="btn btn-primary">View Show</button>
+      </div>
+    </div>
+    <!-- Event 2 -->
+    <div class="row" id="event2">
+      <div class="col-sm-2 align-self-center">
+        <img src="event2.jpg" class="event-image">
+      </div>
+      <div class="col-sm-2 align-self-center">
+        <div class="date-container">
+          <span class="day">04</span>
+          <span class="month">Apr</span>
+        </div>
+      </div>
+      <div class="col-sm-4 align-self-center">
+        <div class="event-info">
+          <div class="event-content">
+            <p><a href="#" class="artist-link">Artist Name 2</a></p>
+            <p class="location">Location 2</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3 align-self-center">
+        <button class="btn btn-primary">View Show</button>
+      </div>
+    </div>
+    <!-- Event 3 -->
+    <div class="row" id="event3">
+      <div class="col-sm-2 align-self-center">
+        <img src="event1.jpg" class="event-image">
+      </div>
+      <div class="col-sm-2 align-self-center">
+        <div class="date-container">
+          <span class="day">01</span>
+          <span class="month">Mar</span>
+        </div>
+      </div>
+      <div class="col-sm-4 align-self-center">
+        <div class="event-info">
+          <div class="event-content">
+            <p><a href="#" class="artist-link">Artist Name 3</a></p>
+            <p class="location">Location 3</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3 align-self-center">
+        <button class="btn btn-primary">View Show</button>
+      </div>
+    </div>
+  </div>  
+      <script>
+        function filterEvents() {
+            var artist = document.getElementById('artistFilter').value;
+            var location = document.getElementById('locationFilter').value;
+            var time = document.getElementById('timeFilter').value;
+            var events = document.querySelectorAll('.row[id^="event"]'); // Select all event rows
+    
+            events.forEach(function(event) {
+                var artistName = event.querySelector('.artist-link').innerText;
+                var eventLocation = event.querySelector('.location').innerText;
+                var eventTime = event.querySelector('.month').innerText;
+                var artistMatch = artist === 'All' || artist === artistName;
+                var locationMatch = location === 'All' || location === eventLocation;
+                var timeMatch = time === 'All' || time === eventTime;
+                if (artistMatch && locationMatch && timeMatch) {
+                    event.style.display = ''; // Show the event
+                } else {
+                    event.style.display = 'none'; // Hide
+                }
+            });
+        }
+    
+        // Call the filterEvents function when any filter option changes
+        document.getElementById('artistFilter').addEventListener('change', filterEvents);
+        document.getElementById('locationFilter').addEventListener('change', filterEvents);
+        document.getElementById('timeFilter').addEventListener('change', filterEvents);
+    
+        // Initially filter the events based on the default filter options
+        filterEvents();
+    </script>     
     </body>
 </html>
