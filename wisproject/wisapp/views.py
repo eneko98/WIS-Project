@@ -4,8 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from .models import UserProfile
-from .forms import SignUpForm
-# Create your views here.
+from .forms import SignUpForm, UserProfileForm
 
 def home(request):
     return render(request, 'home.html')
@@ -51,3 +50,20 @@ def sign_in(request):
 def profile(request):
     user_profile, created = UserProfile.objects.get_or_create(user=request.user)
     return render(request, 'profile.html', {'profile': user_profile})
+
+@login_required
+def edit_profile(request):
+    try:
+        profile = request.user.userprofile
+    except UserProfile.DoesNotExist:
+        profile = UserProfile(user=request.user)
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = UserProfileForm(instance=profile)
+
+    return render(request, 'edit_profile.html', {'form': form})

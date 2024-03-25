@@ -8,11 +8,11 @@
 <body>
     <div class="container mt-5">
         <h1>Welcome to Our Music Label</h1>
-        <p>This looks shit but it will get better, I promise LOL</p>
+        <p>This looks like shit but it will get better, I promise LOL</p>
         <div class="mt-3">
-            <a href="artists.html" class="btn btn-primary m-1">Artist Page</a>
-            <a href="events.html" class="btn btn-secondary m-1">Events Page</a>
-            <a href="contact.html" class="btn btn-success m-1">Contact Page</a>
+            <a href="{% url 'artists' %}" class="btn btn-primary m-1">Artist Page</a>
+            <a href="{% url 'events' %}" class="btn btn-secondary m-1">Events Page</a>
+            <a href="{% url 'contact' %}" class="btn btn-success m-1">Contact Page</a>
             {% if user.is_authenticated %}
                 <a href="{% url 'profile' %}" class="btn btn-danger m-1">Profile</a>
             {% else %}
