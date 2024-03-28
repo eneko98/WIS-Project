@@ -1,0 +1,51 @@
+/* profile.css */
+.profile-container {
+    text-align: center;
+    max-width: 700px;
+    margin: 40px auto;
+    background: #f9f9f9;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.profile-picture img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border: 5px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info h3 {
+    margin-top: 20px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.profile-info p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #666;
+}
+
+.profile-info a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.profile-info a:hover {
+    text-decoration: underline;
+}
+
+.social-media-links img {
+    margin: 10px;
+    width: 32px;
+    height: 32px;
+}
+
+/* Optionally hide empty fields */
+.profile-info p:empty {
+    display: none;
+}
+

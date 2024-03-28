@@ -33,7 +33,7 @@ def sign_up(request):
         form = SignUpForm()
     return render(request, 'sign_up.html', {'form': form})
 
-def sign_in(request):
+def log_in(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -42,28 +42,11 @@ def sign_in(request):
             login(request, user)
             return redirect('profile')
         else:
-            return render(request, 'sign_in.html', {'error': 'Invalid username or password'})
+            return render(request, 'log_in.html', {'error': 'Invalid username or password'})
     else:
-        return render(request, 'sign_in.html')
+        return render(request, 'log_in.html')
 
 @login_required
 def profile(request):
     user_profile, created = UserProfile.objects.get_or_create(user=request.user)
     return render(request, 'profile.html', {'profile': user_profile})
-
-@login_required
-def edit_profile(request):
-    try:
-        profile = request.user.userprofile
-    except UserProfile.DoesNotExist:
-        profile = UserProfile(user=request.user)
-
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
-    else:
-        form = UserProfileForm(instance=profile)
-
-    return render(request, 'edit_profile.html', {'form': form})
