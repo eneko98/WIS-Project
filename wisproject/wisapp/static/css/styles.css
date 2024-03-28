@@ -23,10 +23,10 @@ body {
 }
 
 .nav-item .btn-link {
-    color: rgba(0,0,0,.5); /* Match the color of other nav links */
-    text-decoration: none; /* Remove underline */
+    color: rgba(0,0,0,.5);
+    text-decoration: none;
 }
 
 .nav-item .btn-link:hover {
-    color: rgba(0,0,0,.7); /* Match hover effect of other nav links */
+    color: rgba(0,0,0,.7);
 }

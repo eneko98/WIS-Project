@@ -1,5 +1,5 @@
+<!-- sign_up.html -->
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block content %}
@@ -9,24 +9,29 @@
         <div class="card shadow">
             <div class="card-body">
                 <h3 class="card-title text-center mb-4">Sign Up</h3>
+
+                {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    {% for message in messages %}
+                        {% if message.tags %}<strong>{{ message.tags }}:</strong> {% endif %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
                 <form method="post" action="{% url 'sign_up' %}">
                     {% csrf_token %}
+                    {% for field in form %}
                     <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
+                        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="invalid-feedback">
+                                {{ field.errors.as_text }}
+                            </div>
+                        {% endif %}
                     </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password1" name="password1" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password2" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="password2" name="password2" required>
-                    </div>
+                    {% endfor %}
                     <button type="submit" class="btn btn-primary w-100">Sign Up</button>
                 </form>
             </div>
