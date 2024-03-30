@@ -1,35 +1,85 @@
+<!-- profile.html -->
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/profile.css' %}">
-<div class="profile-container">
-    <div class="profile-picture">
-        <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile picture">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+
+<div class="container py-4">
+    <!-- Profile Header -->
+    <div class="profile-header text-center mb-5">
+        <h2>{{ user.username }}'s Profile</h2>
     </div>
-    <div class="profile-info">
-        <h3>{{ user.username }}</h3>
-        <p>{{ user.userprofile.bio }}</p>
-        <p><strong>Website:</strong> <a href="{{ user.userprofile.website }}">{{ user.userprofile.website }}</a></p>
-        <p><strong>Genre:</strong> {{ user.userprofile.genre }}</p>
-        <p><strong>Instruments:</strong> {{ user.userprofile.instruments }}</p>
-        <p><strong>Record Label:</strong> {{ user.userprofile.record_label }}</p>
-        <p><strong>Social Media Reach:</strong> {{ user.userprofile.social_media_reach }}</p>
-        <p><strong>Years Active:</strong> {{ user.userprofile.years_active }}</p>
-        <p><strong>Upcoming Events:</strong> {{ user.userprofile.upcoming_events }}</p>
-        <p><strong>Recent Albums:</strong> {{ user.userprofile.recent_albums }}</p>
-        <p><strong>Favorite Artists:</strong> {{ user.userprofile.favorite_artists }}</p>
-        <p><strong>Favorite Albums:</strong> {{ user.userprofile.favorite_albums }}</p>
-        <div class="social-media-links">
-            {% if user.userprofile.instagram_link %}
-                <a href="{{ user.userprofile.instagram_link }}"><img src="{% static 'images/instagram-icon.png' %}" alt="Instagram"></a>
-            {% endif %}
-            {% if user.userprofile.spotify_link %}
-                <a href="{{ user.userprofile.spotify_link }}"><img src="{% static 'images/spotify-icon.png' %}" alt="Spotify"></a>
-            {% endif %}
-            {% if user.userprofile.twitter_link %}
-                <a href="{{ user.userprofile.twitter_link }}"><img src="{% static 'images/x-icon.png' %}" alt="Twitter"></a>
-            {% endif %}
+    
+    <!-- Edit Mode Alert -->
+    {% if edit_mode %}
+    <div class="alert alert-warning text-center">
+        <p>Your profile is incomplete. Please complete your profile information.</p>
+        <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+    </div>
+    {% else %}
+    <!-- Profile Content -->
+    <div class="row">
+        <!-- Left Container: Profile Info -->
+        <div class="col-md-6">
+            <div class="profile-container">
+                <div class="profile-picture">
+                    {% if profile.profile_picture %}
+                        <img src="{{ profile.profile_picture.url }}" alt="{{ user.username }}'s Profile Picture" class="img-fluid">
+                    {% else %}
+                        <img src="{{ MEDIA_URL }}profile_pictures/New-FAIces-scaled.jpg" alt="{{ user.username }}'s Profile Picture" class="img-fluid">
+                    {% endif %}
+                </div>
+                <div class="profile-info">
+                    <h3>Bio</h3>
+                    <p>{{ profile.bio }}</p>
+                    {% if profile_type == 'individual' %}
+                        <h3>Instruments</h3>
+                        <p>{{ profile.instruments }}</p>
+                    {% endif %}
+                    <div class="social-media-links">
+                        <!-- Social Links -->
+                        {% if profile.twitter_link %}
+                            <a href="{{ profile.twitter_link }}"><img src="{% static 'images/x-icon.png' %}" alt="Twitter" class="img-fluid"></a>
+                        {% endif %}
+                        {% if profile.instagram_link %}
+                            <a href="{{ profile.instagram_link }}"><img src="{% static 'images/instagram-icon.png' %}" alt="Instagram" class="img-fluid"></a>
+                        {% endif %}
+                        {% if profile.spotify_link %}
+                            <a href="{{ profile.spotify_link }}"><img src="{% static 'images/spotify-icon.png' %}" alt="Spotify" class="img-fluid"></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Container: Music and Events Info -->
+        <div class="col-md-6">
+            <div class="profile-container">
+                <!-- Upcoming Events -->
+                <div class="profile-info">
+                    <h3>Upcoming Events</h3>
+                    <p>{{ profile.upcoming_events }}</p>
+                </div>
+                <!-- Recent Albums -->
+                <div class="profile-info">
+                    <h3>Recent Albums</h3>
+                    <p>{{ profile.recent_albums }}</p>
+                </div>
+                <!-- Favourite Artists -->
+                <div class="profile-info">
+                    <h3>Favourite Artists</h3>
+                    <p>{{ profile.favorite_artists }}</p>
+                </div>
+                <!-- Favourite Albums -->
+                <div class="profile-info">
+                    <h3>Favourite Albums</h3>
+                    <p>{{ profile.favorite_albums }}</p>
+                </div>
+            </div>
         </div>
     </div>
+    {% endif %}
 </div>
+
 {% endblock %}

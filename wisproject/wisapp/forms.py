@@ -1,9 +1,14 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import UserProfile
+from .models import IndividualProfile, BandProfile
 
 class SignUpForm(UserCreationForm):
+    user_type = forms.ChoiceField(
+        choices=[('individual', 'Individual'), ('band', 'Band')],
+        widget=forms.RadioSelect,
+        initial='individual'
+    )
     email = forms.EmailField(
         widget=forms.EmailInput(attrs={'class': 'form-control'})
     )
@@ -19,15 +24,30 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('email', 'username', 'password1', 'password2')
+        fields = ('user_type', 'email', 'username', 'password1', 'password2')
         
-class UserProfileForm(forms.ModelForm):
+class IndividualProfileForm(forms.ModelForm):
     class Meta:
-        model = UserProfile
-        fields = ['bio', 'website', 'profile_picture']
+        model = IndividualProfile
+        fields = ['bio', 'profile_picture', 'instruments', 'twitter_link', 'instagram_link', 'spotify_link']
+        widgets = {
+            'bio': forms.Textarea(attrs={'class': 'form-control'}),
+            'profile_picture': forms.FileInput(attrs={'class': 'form-control'}),
+            'instruments': forms.TextInput(attrs={'class': 'form-control'}),
+            'twitter_link': forms.URLInput(attrs={'class': 'form-control'}),
+            'instagram_link': forms.URLInput(attrs={'class': 'form-control'}),
+            'spotify_link': forms.URLInput(attrs={'class': 'form-control'}),
+        }
+
+class BandProfileForm(forms.ModelForm):
+    class Meta:
+        model = BandProfile
+        fields = ['bio', 'website', 'profile_picture', 'twitter_link', 'instagram_link', 'spotify_link']
         widgets = {
             'bio': forms.Textarea(attrs={'class': 'form-control'}),
             'website': forms.URLInput(attrs={'class': 'form-control'}),
             'profile_picture': forms.FileInput(attrs={'class': 'form-control'}),
-
+            'twitter_link': forms.URLInput(attrs={'class': 'form-control'}),
+            'instagram_link': forms.URLInput(attrs={'class': 'form-control'}),
+            'spotify_link': forms.URLInput(attrs={'class': 'form-control'}),
         }
