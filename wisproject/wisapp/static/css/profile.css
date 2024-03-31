@@ -1,50 +1,73 @@
 /* profile.css */
-.profile-container {
-    text-align: center;
-    max-width: 700px;
-    margin: 40px auto;
-    background: #f9f9f9;
-    padding: 20px;
+
+/* Ensures content is centered and has some spacing from the header/footer */
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px; /* Adjust based on your navbar height */
+    margin-bottom: 50px; /* Space from the footer */
+  }
+  
+  .profile-picture {
+    width: 150px; /* Adjust the size as needed */
+    height: 150px; /* Maintain a square aspect ratio */
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image covers the area well */
+    margin-bottom: 20px;
+  }
+  
+  /* Personal info styling */
+  .personal-info, .details {
+    background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-}
-
-.profile-picture img {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    border: 5px solid white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.profile-info h3 {
-    margin-top: 20px;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.profile-info p {
+    border-radius: 8px;
+    padding: 20px;
     margin: 10px 0;
-    font-size: 16px;
-    color: #666;
-}
-
-.profile-info a {
-    color: #007bff;
+    width: 80%; /* Adjust based on your preference */
+    max-width: 600px; /* Ensures it doesn't get too wide on larger screens */
+  }
+  
+  .personal-info h2, .details h3 {
+    color: #333; /* Dark text for contrast */
+  }
+  
+  .personal-info a, .details a {
+    color: #007bff; /* Bootstrap primary color for consistency */
     text-decoration: none;
-}
+  }
+  
+  /* Social media icons */
+  .social-links img {
+    width: 32px; /* Adjust based on the size of your icons */
+    margin: 0 10px;
+  }
+  
+  /* Ensures links are horizontally aligned */
+  .social-links {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Details section styling */
+  .details h3 {
+    margin-top: 20px;
+  }
 
-.profile-info a:hover {
-    text-decoration: underline;
-}
-
-.social-media-links img {
-    margin: 10px;
-    width: 32px;
-    height: 32px;
-}
-
-.profile-info p:empty {
-    display: none;
-}
-
+  .edit-profile-btn {
+    display: inline-block;
+    background-color: #007bff !important; /* Ensures this background color takes precedence */
+    color: #ffffff !important; /* Ensures the text color is white */
+    padding: 10px 20px; /* Padding to increase the size */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none !important; /* Remove underline from link */
+    transition: background-color 0.2s; /* Smooth transition for hover effect */
+  }
+  
+  .edit-profile-btn:hover, .edit-profile-btn:focus {
+    background-color: #0056b3 !important; /* Darker shade on hover/focus for feedback */
+    color: #ffffff !important;
+    text-decoration: none !important; /* Ensure text remains not underlined */
+  }
+  
+  

@@ -2,71 +2,27 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/profile.css' %}" />
-
-<div class="container py-4">
-    <div class="profile-header text-center mb-5">
-        <h2>Edit {{ user.username }}'s Profile</h2>
-    </div>
-
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="row">
-            <!-- Left Container: Form Inputs for Profile Info -->
-            <div class="col-md-6">
-                <div class="profile-container">
-                    <div class="form-group mb-3">
-                        {{ form.bio.label_tag }}
-                        {{ form.bio }}
-                        {{ form.bio.errors }}
-                    </div>
-                    <div class="form-group mb-3">
-                        {{ form.profile_picture.label_tag }}
-                        {{ form.profile_picture }}
-                        {{ form.profile_picture.errors }}
-                    </div>
-                    <!-- Conditionally render instruments for individual profile -->
-                    {% if profile_type == 'individual' %}
-                        <div class="form-group mb-3">
-                            {{ form.instruments.label_tag }}
-                            {{ form.instruments }}
-                            {{ form.instruments.errors }}
-                        </div>
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+<div class="edit-profile-form-container">
+    <div class="edit-profile-form">
+        <h2>Edit Your Profile</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+                <div>
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <small>{{ field.help_text }}</small>
                     {% endif %}
-                    <div class="form-group mb-3">
-                        {{ form.twitter_link.label_tag }}
-                        {{ form.twitter_link }}
-                        {{ form.twitter_link.errors }}
-                    </div>
-                    <div class="form-group mb-3">
-                        {{ form.instagram_link.label_tag }}
-                        {{ form.instagram_link }}
-                        {{ form.instagram_link.errors }}
-                    </div>
-                    <div class="form-group mb-3">
-                        {{ form.spotify_link.label_tag }}
-                        {{ form.spotify_link }}
-                        {{ form.spotify_link.errors }}
-                    </div>
+                    {% for error in field.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
                 </div>
-            </div>
-            
-            <!-- Right Container: Additional Info for Band Profile -->
-            <div class="col-md-6">
-                {% if profile_type == 'band' %}
-                    <div class="profile-container">
-                        <div class="form-group mb-3">
-                            {{ form.website.label_tag }}
-                            {{ form.website }}
-                            {{ form.website.errors }}
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
-        </div>
-        <div class="text-center mt-4">
-            <button type="submit" class="btn btn-primary">Save Profile</button>
-        </div>
-    </form>
+            {% endfor %}
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
 </div>
 {% endblock %}

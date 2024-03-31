@@ -1,0 +1,73 @@
+/* edit_profile.css */
+
+/* Center the form container */
+.edit-profile-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px; /* Adjust based on navbar height */
+    margin-bottom: 50px;
+  }
+  
+  .edit-profile-form {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px; /* Adjust width as necessary */
+    margin: 20px;
+  }
+  
+  .edit-profile-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Style each form field */
+  .edit-profile-form div {
+    margin-bottom: 15px;
+  }
+  
+  .edit-profile-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .edit-profile-form input, 
+  .edit-profile-form textarea, 
+  .edit-profile-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px; /* Space below each field */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Small text like help text and error messages */
+  .edit-profile-form small {
+    display: block;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    color: #666;
+  }
+  
+  /* Error message styling */
+  .edit-profile-form .error {
+    color: #d9534f; /* Bootstrap danger color */
+  }
+  
+  /* Submit button styling */
+  .edit-profile-form button[type="submit"] {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .edit-profile-form button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  

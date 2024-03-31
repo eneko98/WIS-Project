@@ -29,7 +29,7 @@ class SignUpForm(UserCreationForm):
 class IndividualProfileForm(forms.ModelForm):
     class Meta:
         model = IndividualProfile
-        fields = ['bio', 'profile_picture', 'instruments', 'twitter_link', 'instagram_link', 'spotify_link']
+        fields = ['profile_picture', 'bio', 'instruments', 'twitter_link', 'instagram_link', 'spotify_link']
         widgets = {
             'bio': forms.Textarea(attrs={'class': 'form-control'}),
             'profile_picture': forms.FileInput(attrs={'class': 'form-control'}),
@@ -42,7 +42,7 @@ class IndividualProfileForm(forms.ModelForm):
 class BandProfileForm(forms.ModelForm):
     class Meta:
         model = BandProfile
-        fields = ['bio', 'website', 'profile_picture', 'twitter_link', 'instagram_link', 'spotify_link']
+        fields = ['profile_picture', 'bio', 'website', 'twitter_link', 'instagram_link', 'spotify_link']
         widgets = {
             'bio': forms.Textarea(attrs={'class': 'form-control'}),
             'website': forms.URLInput(attrs={'class': 'form-control'}),
