@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import IndividualProfile, BandProfile
+from .models import UserProfile
 
 # Register your models here.
 
-admin.site.register(IndividualProfile)
-admin.site.register(BandProfile)
+admin.site.register(UserProfile)

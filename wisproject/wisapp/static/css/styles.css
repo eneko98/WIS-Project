@@ -9,7 +9,7 @@ body, html {
 }
   
   main {
-    min-height: 90vh; /* Ensures the main content area is tall enough */
+    min-height: calc(100vh - 30px); /* Ensures the main content area is tall enough */
     padding: 20px;
     background-color: #f0f0f0; /* Light background for the content area */
   }

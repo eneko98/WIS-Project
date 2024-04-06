@@ -13,29 +13,67 @@
             <a href="{% url 'edit_profile' %}" class="edit-profile-btn">Edit Profile</a>
         </div>
         <p>{{ profile.bio }}</p>
-        {% if profile_type == 'individual' %}
-            <p>Instruments: {{ profile.instruments }}</p>
-        {% else %}
-            <p>Website: <a href="{{ profile.website }}">{{ profile.website }}</a></p>
-            <p>Genre: {{ profile.genre }}</p>
-            <p>Years Active: {{ profile.years_active }}</p>
-        {% endif %}
         <div class="social-links">
-            <a href="{{ profile.instagram_link }}"><img src="{% static 'images/instagram-icon.png' %}" alt="Instagram"></a>
-            <a href="{{ profile.spotify_link }}"><img src="{% static 'images/spotify-icon.png' %}" alt="Spotify"></a>
-            <a href="{{ profile.twitter_link }}"><img src="{% static 'images/x-icon.png' %}" alt="Twitter"></a>
+            {% if profile.instagram_link %}
+                <a href="{{ profile.instagram_link }}"><img src="{% static 'images/instagram-icon.png' %}" alt="Instagram"></a>
+            {% endif %}
+            {% if profile.spotify_link %}
+                <a href="{{ profile.spotify_link }}"><img src="{% static 'images/spotify-icon.png' %}" alt="Spotify"></a>
+            {% endif %}
+            {% if profile.twitter_link %}
+                <a href="{{ profile.twitter_link }}"><img src="{% static 'images/x-icon.png' %}" alt="Twitter"></a>
+            {% endif %}
         </div>
     </div>
     <section class="details">
-        <!-- Details -->
-        <h3>Upcoming Events</h3>
-        <p>{{ profile.upcoming_events }}</p>
-        <h3>Recent Albums</h3>
-        <p>{{ profile.recent_albums }}</p>
-        <h3>Favorite Artists</h3>
-        <p>{{ profile.favorite_artists }}</p>
-        <h3>Favorite Albums</h3>
-        <p>{{ profile.favorite_albums }}</p>
-    </section>
+        <div class="container">
+          <!-- Upcoming Events -->
+          {% if profile.upcoming_events %}
+            <div class="event-section">
+              <h3>Upcoming Events</h3>
+              <ul class="event-list">
+                <!-- Dynamically list events here -->
+                {% for event in profile.upcoming_events_list %}
+                  <li>
+                    <span class="event-date">{{ event.date }}</span>
+                    <span class="event-name">{{ event.name }}</span>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+      
+          <!-- Favorite Artists -->
+          {% if profile.favorite_artists %}
+            <div class="artist-section">
+              <h3>Favorite Artists</h3>
+              <ul class="artist-list">
+                <!-- Dynamically list artists here -->
+                {% for artist in profile.favorite_artists_list %}
+                  <li>{{ artist.name }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+      
+          <!-- Favorite Albums -->
+          {% if profile.favorite_albums %}
+            <div class="album-section">
+              <h3>Favorite Albums</h3>
+              <ul class="album-list">
+                <!-- Dynamically list albums here -->
+                {% for album in profile.favorite_albums_list %}
+                  <li>
+                    <span class="album-title">{{ album.title }}</span>
+                    <!-- Album cover images -->
+                    <img src="{{ album.cover_url }}" alt="Cover image for {{ album.title }}">
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        </div>
+      </section>
+      
 </div>
 {% endblock %}

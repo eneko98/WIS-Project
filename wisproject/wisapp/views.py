@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import IndividualProfile, BandProfile
-from .forms import SignUpForm, IndividualProfileForm, BandProfileForm
+from .models import UserProfile
+from .forms import SignUpForm, UserProfileForm
 
 def home(request):
     return render(request, 'home.html')
@@ -49,35 +49,28 @@ def log_in(request):
 def profile(request):
     user = request.user
     try:
-        profile = IndividualProfile.objects.get(user=user)
-        profile_type = 'individual'
-    except IndividualProfile.DoesNotExist:
-        profile = BandProfile.objects.get(user=user)
-        profile_type = 'band'
+        profile = UserProfile.objects.get(user=user)
+    except UserProfile.DoesNotExist:
+        profile = None  # It might be a good idea to handle this case, perhaps redirect to a profile creation view.
     context = {
         'profile': profile,
-        'profile_type': profile_type,
     }
     return render(request, 'profile.html', context)
 
 @login_required
 def edit_profile(request):
-    # Check if the user has an individual profile
     try:
-        profile = IndividualProfile.objects.get(user=request.user)
-        profile_form = IndividualProfileForm
-    except IndividualProfile.DoesNotExist:
-        # If not, it must be a band profile
-        profile = BandProfile.objects.get(user=request.user)
-        profile_form = BandProfileForm
+        profile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        profile = UserProfile(user=request.user)  # Create a new profile if it doesn't exist
 
     if request.method == 'POST':
-        form = profile_form(request.POST, request.FILES, instance=profile)
+        form = UserProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect('profile')  # Redirect to the profile page after saving
+            return redirect('profile')
     else:
-        form = profile_form(instance=profile)
+        form = UserProfileForm(instance=profile)
 
-    context = {'form': form, 'profile': profile}
+    context = {'form': form}
     return render(request, 'edit_profile.html', context)

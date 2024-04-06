@@ -2,72 +2,119 @@
 
 /* Ensures content is centered and has some spacing from the header/footer */
 .profile-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 100px; /* Adjust based on your navbar height */
-    margin-bottom: 50px; /* Space from the footer */
-  }
-  
-  .profile-picture {
-    width: 150px; /* Adjust the size as needed */
-    height: 150px; /* Maintain a square aspect ratio */
-    border-radius: 50%; /* Makes the image circular */
-    object-fit: cover; /* Ensures the image covers the area well */
-    margin-bottom: 20px;
-  }
-  
-  /* Personal info styling */
-  .personal-info, .details {
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 20px;
-    margin: 10px 0;
-    width: 80%; /* Adjust based on your preference */
-    max-width: 600px; /* Ensures it doesn't get too wide on larger screens */
-  }
-  
-  .personal-info h2, .details h3 {
-    color: #333; /* Dark text for contrast */
-  }
-  
-  .personal-info a, .details a {
-    color: #007bff; /* Bootstrap primary color for consistency */
-    text-decoration: none;
-  }
-  
-  /* Social media icons */
-  .social-links img {
-    width: 32px; /* Adjust based on the size of your icons */
-    margin: 0 10px;
-  }
-  
-  /* Ensures links are horizontally aligned */
-  .social-links {
-    display: flex;
-    justify-content: center;
-  }
-  
-  /* Details section styling */
-  .details h3 {
-    margin-top: 20px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px; /* Adjust based on your navbar height */
+  margin-bottom: 50px; /* Space from the footer */
+}
 
-  .edit-profile-btn {
-    display: inline-block;
-    background-color: #007bff !important; /* Ensures this background color takes precedence */
-    color: #ffffff !important; /* Ensures the text color is white */
-    padding: 10px 20px; /* Padding to increase the size */
-    border-radius: 5px; /* Rounded corners */
-    text-decoration: none !important; /* Remove underline from link */
-    transition: background-color 0.2s; /* Smooth transition for hover effect */
-  }
-  
-  .edit-profile-btn:hover, .edit-profile-btn:focus {
-    background-color: #0056b3 !important; /* Darker shade on hover/focus for feedback */
-    color: #ffffff !important;
-    text-decoration: none !important; /* Ensure text remains not underlined */
-  }
-  
-  
+.profile-picture {
+  width: 150px; /* Adjust the size as needed */
+  height: 150px; /* Maintain a square aspect ratio */
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover; /* Ensures the image covers the area well */
+  margin-bottom: 20px;
+}
+
+/* Personal info styling */
+.personal-info, .details {
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px 0;
+  width: 80%; /* Adjust based on your preference */
+  max-width: 600px; /* Ensures it doesn't get too wide on larger screens */
+}
+
+.personal-info h2, .details h3 {
+  color: #333; /* Dark text for contrast */
+}
+
+.personal-info a, .details a {
+  color: #007bff; /* Bootstrap primary color for consistency */
+  text-decoration: none;
+}
+
+/* Social media icons */
+.social-links img {
+  width: 32px; /* Set a fixed width for all icons */
+  height: 32px; /* Set a fixed height for all icons */
+  margin: 0 10px;
+  object-fit: contain; /* This will ensure that the image's aspect ratio is preserved */
+}
+
+/* Ensures links are horizontally aligned */
+.social-links {
+  display: flex;
+  justify-content: center;
+}
+
+/* Details section styling */
+.details h3 {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 0;
+}
+
+.details .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.event-section, .artist-section, .album-section {
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.event-list, .artist-list, .album-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.event-list li, .artist-list li, .album-list li {
+  padding: 10px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.event-list li:last-child, .artist-list li:last-child, .album-list li:last-child {
+  border-bottom: none;
+}
+
+.event-date {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.album-title {
+  margin-right: 10px;
+}
+
+.album-list img {
+  width: 50px; /* Adjust as needed */
+  height: 50px; /* Adjust as needed */
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.edit-profile-btn {
+  display: inline-block;
+  background-color: #007bff !important; /* Ensures this background color takes precedence */
+  color: #ffffff !important; /* Ensures the text color is white */
+  padding: 10px 20px; /* Padding to increase the size */
+  border-radius: 5px; /* Rounded corners */
+  text-decoration: none !important; /* Remove underline from link */
+  transition: background-color 0.2s; /* Smooth transition for hover effect */
+}
+
+.edit-profile-btn:hover, .edit-profile-btn:focus {
+  background-color: #0056b3 !important; /* Darker shade on hover/focus for feedback */
+  color: #ffffff !important;
+  text-decoration: none !important; /* Ensure text remains not underlined */
+}
