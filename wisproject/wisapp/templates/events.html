@@ -14,12 +14,12 @@
       <style>
         /* Custom CSS */
         .header {
-          background-image: url('https://i.pinimg.com/564x/78/98/f1/7898f1b2f2c32658702684236a397575.jpg');
+          background-color: transparent;
           background-size: cover;
-          color: white;
-          text-align: left;
+          color: black;
+          text-align: center;
           align-items: center;
-          height: 40vh;
+          height: 15vh;
           display: flex;
         }
     
@@ -51,6 +51,13 @@
 
         .event-list {
             align-items: center;
+        }
+
+        .container-border {
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          padding: 20px;
         }
       </style>
     </head>
@@ -84,6 +91,10 @@
           <div class="col-md-2">
             <select id="timeFilter" onchange="filterEvents()">
               <option value="All">Time</option>
+              <option value="January">January</option>
+              <option value="February">February</option>
+              <option value="March">March</option>
+              <option value="April">April</option>
               <option value="May">May</option>
               <option value="June">June</option>
               <option value="July">July</option>
@@ -99,22 +110,23 @@
       </div>
       <!-- Event Section -->
 <div class="container">
+  <div class="container container-border"> 
     <!-- Event 1 -->
     <div class="row" id="event1">
       <div class="col-sm-2 align-self-center">
-        <img src="event1.jpg" class="event-image">
+        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.FjSBSewwxC0wRUHEYDDCIgHaHa%26pid%3DApi&f=1&ipt=bdd1cdc856db218e5cb265f09b265aba74d32931f9d2edd0ed1670e1e491b048&ipo=images" class="event-image">
       </div>
       <div class="col-sm-2 align-self-center">
         <div class="date-container">
           <span class="day">01</span>
-          <span class="month">Mar</span>
+          <span class="month">March</span>
         </div>
       </div>
       <div class="col-sm-4 align-self-center">
         <div class="event-info">
           <div class="event-content">
-            <p><a href="#" class="artist-link">Artist Name 1</a></p>
-            <p class="location">Location 1</p>
+            <p><a href="#" class="artist-link">Ennio Morricone</a></p>
+            <p class="location">Paris</p>
           </div>
         </div>
       </div>
@@ -125,19 +137,19 @@
     <!-- Event 2 -->
     <div class="row" id="event2">
       <div class="col-sm-2 align-self-center">
-        <img src="event2.jpg" class="event-image">
+        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.Q-QTJobKxnDRHln87mfwMQHaHa%26pid%3DApi&f=1&ipt=2b9f86dff9ca6b48efa3b3949803d20c4745fdf889a54f8af8516c94acc1ddaf&ipo=images" class="event-image">
       </div>
       <div class="col-sm-2 align-self-center">
         <div class="date-container">
           <span class="day">04</span>
-          <span class="month">Apr</span>
+          <span class="month">April</span>
         </div>
       </div>
       <div class="col-sm-4 align-self-center">
         <div class="event-info">
           <div class="event-content">
-            <p><a href="#" class="artist-link">Artist Name 2</a></p>
-            <p class="location">Location 2</p>
+            <p><a href="#" class="artist-link">Celine Dion</a></p>
+            <p class="location">Toronto</p>
           </div>
         </div>
       </div>
@@ -148,19 +160,19 @@
     <!-- Event 3 -->
     <div class="row" id="event3">
       <div class="col-sm-2 align-self-center">
-        <img src="event1.jpg" class="event-image">
+        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.5RJqjj0_-rCXTejhcnDa2AHaGq%26pid%3DApi&f=1&ipt=03a4fb25bd502783bb529081c0a27257a59d03377c4b6d650f369796ea895a1a&ipo=images" class="event-image">
       </div>
       <div class="col-sm-2 align-self-center">
         <div class="date-container">
           <span class="day">01</span>
-          <span class="month">Mar</span>
+          <span class="month">March</span>
         </div>
       </div>
       <div class="col-sm-4 align-self-center">
         <div class="event-info">
           <div class="event-content">
-            <p><a href="#" class="artist-link">Artist Name 3</a></p>
-            <p class="location">Location 3</p>
+            <p><a href="#" class="artist-link">Two step from Hell</a></p>
+            <p class="location">Berlin</p>
           </div>
         </div>
       </div>
@@ -168,7 +180,8 @@
         <button class="btn btn-primary">View Show</button>
       </div>
     </div>
-  </div>  
+  </div>
+  
       <script>
         function filterEvents() {
             var artist = document.getElementById('artistFilter').value;
