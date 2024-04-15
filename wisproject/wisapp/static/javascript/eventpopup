@@ -1,0 +1,22 @@
+// Function to show the pop-up with event details
+function showPopup(eventId) {
+    // Retrieve event details based on event ID
+    var event = document.getElementById('event' + eventId);
+    var imageSrc = event.querySelector('.event-image').src;
+    var date = event.querySelector('.date-container').innerText;
+    var artist = event.querySelector('.artist-link').innerText;
+    var location = event.querySelector('.location').innerText;
+    // Replace the pop-up content with event details
+    document.getElementById('popup-image').src = imageSrc;
+    document.getElementById('popup-date').innerText = date;
+    document.getElementById('popup-artist').innerText = 'Artist: ' + artist;
+    document.getElementById('popup-location').innerText = 'Location: ' + location;
+    // Show the pop-up
+    document.getElementById('popup').style.display = 'block';
+  }
+  
+  // Function to close the pop-up
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+  }
+  

@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import UserProfile
+from .models import Events
 from .forms import SignUpForm, UserProfileForm
 
 def home(request):
@@ -74,3 +75,25 @@ def edit_profile(request):
 
     context = {'form': form}
     return render(request, 'edit_profile.html', context)
+
+#Event page
+
+def events(request):
+    events = Events.objects.all()
+    return render(request, 'events.html', {'events': events})
+
+def get_event_details(request):
+    if request.method == 'GET' and request.is_ajax():
+        event_id = request.GET.get('event_id')
+        event = Event.objects.get(pk=event_id)
+        event_details = {
+            'artist_name': event.artist_name,
+            'location': event.location,
+            'date': event.date.strftime('%B %d, %Y'),
+            'description': event.description,
+            'artist_photo_url': event.artist_photo.url,
+        }
+        return JsonResponse(event_details)
+    else:
+        return JsonResponse({'error': 'Invalid request'})
+
