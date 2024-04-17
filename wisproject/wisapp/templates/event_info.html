@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/event_info.css' %}">
+<div class="content-wrapper">
+    <div class="event-detail-box">
+        <h1 class="event-title">{{ event.artist_name }}</h1>
+        <div class="event-body">
+            <img src="{{ event.artist_photo }}" alt="{{ event.artist_name }}" class="event-photo">
+            <p class="event-date"><strong>Date:</strong> {{ event.date|date:"F j, Y" }}</p>
+            <p class="event-location"><strong>Location:</strong> {{ event.location }}</p>
+            <p class="event-description">{{ event.description }}</p>
+        </div>
+        <a href="{% url 'events' %}" class="btn-back">&larr; Back to events</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    min-height: 80vh; /* Adjust the height as needed to center the content vertically */
+}
+
+.event-detail-box {
+    background: #fff;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 600px; /* Adjust the width as needed */
+    width: 100%;
+    text-align: center; /* Centering the text if it fits your design */
+}
+
+.event-photo {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 4px; /* Optional: if you want rounded corners on the image */
+}
+
+.event-title {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.event-date,
+.event-location {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.event-description {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    text-align: left; /* For longer descriptions, left-aligned text is often easier to read */
+}
+
+.btn-back {
+    display: inline-block;
+    background-color: #007bff; /* Or use the primary color of your site */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.2s; /* Smooth transition for hover effect */
+}
+
+.btn-back:hover,
+.btn-back:focus {
+    background-color: #0056b3; /* Darker shade on hover/focus for feedback */
+    color: #fff;
+    text-decoration: none; /* Ensure text remains not underlined */
+}

@@ -11,6 +11,7 @@ urlpatterns = [
     path('edit_profile', views.edit_profile, name='edit_profile'),
     path('artists/', views.artists, name='artists'),
     path('events/', views.events, name='events'),
+    path('event/<int:event_id>/', views.event_detail, name='event_detail'),
     path('contact/', views.contact, name='contact'),
     path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
 ]
