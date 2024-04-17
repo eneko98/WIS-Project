@@ -15,8 +15,9 @@ class UserProfile(models.Model):
     def __str__(self):
         return f"{self.user.username}'s profile"
 
-class Events(models.Model):
-    artist_photo = models.ImageField(upload_to='artist_photos')
+class Event(models.Model):
+    #artist_photo = models.ImageField(upload_to='artist_photos')
+    artist_photo = models.URLField()
     artist_name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     date = models.DateField()
