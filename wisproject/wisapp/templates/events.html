@@ -2,51 +2,52 @@
 {% load static %}
 {% block content %}
 <html>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Events</title>
-      <!-- Bootstrap CSS -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
-      <!-- Custom CSS -->
-      <style>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
         /* Custom CSS */
         .header {
-          background-color: transparent;
-          background-size: cover;
-          color: black;
-          text-align: center;
-          align-items: center;
-          height: 15vh;
-          display: flex;
+            background-color: transparent;
+            background-size: cover;
+            color: black;
+            text-align: center;
+            align-items: center;
+            height: 15vh;
+            display: flex;
         }
-    
+
         .filter-section {
-          margin-top: 20px;
-          text-align: left;
+            margin-top: 20px;
+            text-align: left;
         }
-    
+
         .event-image {
-          max-width: 200px;
-          height: 200px;
+            max-width: 200px;
+            height: 200px;
         }
-    
+
         .event-info {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
         }
-    
+
         .date-container {
-          display: flex;
-          flex-direction: column;
-          text-align: center;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
         }
-    
+
         .event-content {
-          margin-left: 20px;
+            margin-left: 20px;
         }
 
         .event-list {
@@ -54,254 +55,94 @@
         }
 
         .container-border {
-          border: 1px solid #ddd;
-          border-radius: 8px;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-          padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
-      </style>
-    </head>
-    <body>
-      <!-- Header Section -->
-      <div class="header">
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <div class="header">
         <h1>Events</h1>
-      </div>
-      <!-- Filter Section -->
-      <div class="container filter-section">
-        <div class="row">
-          <div class="col-md-2">
-            <p>Filter</p>
-          </div>
-          <div class="col-md-2">
-            <select id="artistFilter" onchange="filterEvents()">
-              <option value="All">Artists</option>
-              <option value="Artist Name 1">Artist Name 1</option>
-              <option value="Artist Name 2">Artist Name 2</option>
-              <option value="Artist Name 3">Artist Name 3</option>
-            </select>
-          </div>
-          <div class="col-md-2">
-            <select id="locationFilter" onchange="filterEvents()">
-              <option value="All">Location</option>
-              <option value="Location 1">Location 1</option>
-              <option value="Location 2">Location 2</option>
-              <option value="Location 3">Location 3</option>
-            </select>
-          </div>
-          <div class="col-md-2">
-            <select id="timeFilter" onchange="filterEvents()">
-              <option value="All">Time</option>
-              <option value="January">January</option>
-              <option value="February">February</option>
-              <option value="March">March</option>
-              <option value="April">April</option>
-              <option value="May">May</option>
-              <option value="June">June</option>
-              <option value="July">July</option>
-              <option value="August">August</option>
-              <option value="September">September</option>
-              <option value="October">October</option>
-              <option value="November">November</option>
-              <option value="December">December</option>
-            </select>
-          </div>
-          <div class="col-md-4"></div>
-        </div>
-      </div>
-      <!-- Event Section -->
-<div class="container">
-  <div class="container container-border"> 
-    <!-- Event 1 -->
-    <div class="row" id="event1">
-      <div class="col-sm-2 align-self-center">
-        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.FjSBSewwxC0wRUHEYDDCIgHaHa%26pid%3DApi&f=1&ipt=bdd1cdc856db218e5cb265f09b265aba74d32931f9d2edd0ed1670e1e491b048&ipo=images" class="event-image">
-      </div>
-      <div class="col-sm-2 align-self-center">
-        <div class="date-container">
-          <span class="day">01</span>
-          <span class="month">March</span>
-        </div>
-      </div>
-      <div class="col-sm-4 align-self-center">
-        <div class="event-info">
-          <div class="event-content">
-            <p><a href="#" class="artist-link">Ennio Morricone</a></p>
-            <p class="location">Paris</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3 align-self-center">
-        <button class="btn btn-primary view-details" onclick="showPopup(1)">View Show</button>
-      </div>
     </div>
 
-    <!-- Event 2 -->
-    <div class="row" id="event2">
-      <div class="col-sm-2 align-self-center">
-        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.Q-QTJobKxnDRHln87mfwMQHaHa%26pid%3DApi&f=1&ipt=2b9f86dff9ca6b48efa3b3949803d20c4745fdf889a54f8af8516c94acc1ddaf&ipo=images" class="event-image">
-      </div>
-      <div class="col-sm-2 align-self-center">
-        <div class="date-container">
-          <span class="day">04</span>
-          <span class="month">April</span>
-        </div>
-      </div>
-      <div class="col-sm-4 align-self-center">
-        <div class="event-info">
-          <div class="event-content">
-            <p><a href="#" class="artist-link">Celine Dion</a></p>
-            <p class="location">Toronto</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3 align-self-center">
-        <button class="btn btn-primary view-details" onclick="showPopup(2)">View Show</button>
-      </div>
+    <!-- Filter Section -->
+    <div class="container mt-4">
+        <form method="GET" action="{% url 'events' %}">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="artist">Artist</label>
+                    <select id="artist" name="artist" class="form-control">
+                        <option value="">All Artists</option>
+                        {% for artist in artists %}
+                        <option value="{{ artist }}">{{ artist }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="location">Location</label>
+                    <select id="location" name="location" class="form-control">
+                        <option value="">All Locations</option>
+                        {% for loc in locations %}
+                        <option value="{{ loc }}">{{ loc }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="time">Month</label>
+                    <select id="time" name="time" class="form-control">
+                        <option value="">All Months</option>
+                        {% for month in times %}
+                        <option value="{{ forloop.counter }}">{{ month }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
     </div>
-    <!-- Event 3 -->
-    <div class="row" id="event3">
-      <div class="col-sm-2 align-self-center">
-        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.5RJqjj0_-rCXTejhcnDa2AHaGq%26pid%3DApi&f=1&ipt=03a4fb25bd502783bb529081c0a27257a59d03377c4b6d650f369796ea895a1a&ipo=images" class="event-image">
-      </div>
-      <div class="col-sm-2 align-self-center">
-        <div class="date-container">
-          <span class="day">01</span>
-          <span class="month">March</span>
+
+    <!-- Event Section -->
+    <div id="filteredEventsSection" class="container mt-4">
+        <!-- Filtered events will be displayed here -->
+        <!-- Event Section -->
+        <div class="container container-border">
+            {% for event in events %}
+            <div class="row">
+                <div class="col-sm-2 align-self-center">
+                    <!-- <img src="{{ event.artist_photo.url }}" class="event-image"> -->
+                    <img src="{{ event.artist_photo }}" class="event-image">
+                </div>
+                <div class="col-sm-2 align-self-center">
+                    <div class="date-container">
+                        <span class="day">{{ event.date.day }}</span>
+                        <span class="month">{{ event.date|date:"F" }}</span>
+                    </div>
+                </div>
+                <div class="col-sm-4 align-self-center">
+                    <div class="event-info">
+                        <div class="event-content">
+                            <p><a href="#" class="artist-link">{{ event.artist_name }}</a></p>
+                            <p class="location">{{ event.location }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 align-self-center">
+                    <button class="btn btn-primary view-details"
+                        onclick="location.href='{% url 'event_detail' event.id %}'">View Show</button>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-      </div>
-      <div class="col-sm-4 align-self-center">
-        <div class="event-info">
-          <div class="event-content">
-            <p><a href="#" class="artist-link">Two step from Hell</a></p>
-            <p class="location">Berlin</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3 align-self-center">
-        <button class="btn btn-primary view-details" onclick="showPopup(3)">View Show</button>
-      </div>
     </div>
-  </div>
 
-  <!-- Popup-->
-  <div id="popup" class="popup">
-    <div class="popup-content">
-      <!-- Close button -->
-      <span class="close" onclick="closePopup()">&times;</span>
-      <!-- Event details -->
-      <img id="popup-image" src="" class="event-image">
-      <div id="popup-date" class="date-container"></div>
-      <div id="popup-artist" class="event-content"></div>
-      <div id="popup-location" class="event-content"></div>
-      <div id="popup-description" class="event-content"></div>
-      <!-- Button to purchase tickets -->
-      <a id="popup-tickets-link" href="#" class="btn btn-primary">Buy Tickets</a>
-    </div>
-  </div>
-  
-  
-      <script>
-        function showPopup(eventId) {
-          // Retrieve event details based on event ID
-          var event = document.getElementById('event' + eventId);
-          var imageSrc = event.querySelector('.event-image').src;
-          var date = event.querySelector('.date-container').innerText;
-          var artist = event.querySelector('.artist-link').innerText;
-          var location = event.querySelector('.location').innerText;
-          // Replace the pop-up content with event details
-          document.getElementById('popup-image').src = imageSrc;
-          document.getElementById('popup-date').innerText = date;
-          document.getElementById('popup-artist').innerText = 'Artist: ' + artist;
-          document.getElementById('popup-location').innerText = 'Location: ' + location;
-          // Show the pop-up
-          document.getElementById('popup').style.display = 'block';
-        }
-        
-        // Function to close the pop-up
-        function closePopup() {
-          document.getElementById('popup').style.display = 'none';
-        }
-        function filterEvents() {
-            var artist = document.getElementById('artistFilter').value;
-            var location = document.getElementById('locationFilter').value;
-            var time = document.getElementById('timeFilter').value;
-            var events = document.querySelectorAll('.row[id^="event"]'); // Select all event rows
-    
-            events.forEach(function(event) {
-                var artistName = event.querySelector('.artist-link').innerText;
-                var eventLocation = event.querySelector('.location').innerText;
-                var eventTime = event.querySelector('.month').innerText;
-                var artistMatch = artist === 'All' || artist === artistName;
-                var locationMatch = location === 'All' || location === eventLocation;
-                var timeMatch = time === 'All' || time === eventTime;
-                if (artistMatch && locationMatch && timeMatch) {
-                    event.style.display = ''; // Show the event
-                } else {
-                    event.style.display = 'none'; // Hide
-                }
-            });
-        }
-    
-        // Call the filterEvents function when any filter option changes
-        document.getElementById('artistFilter').addEventListener('change', filterEvents);
-        document.getElementById('locationFilter').addEventListener('change', filterEvents);
-        document.getElementById('timeFilter').addEventListener('change', filterEvents);
-    
-        // Initially filter the events based on the default filter options
-        filterEvents();
-    </script>     
-
-<!-- Modal for displaying event details -->
-<div class="modal fade" id="eventDetailsModal" tabindex="-1" role="dialog" aria-labelledby="eventDetailsModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="eventDetailsModalLabel">Event Details</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
-          <div class="modal-body" id="eventDetailsBody">
-              <!-- Event details will be populated here via AJAX -->
-          </div>
-      </div>
-  </div>
-</div>
-
-<!-- Bootstrap JS and jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- JavaScript for handling event details -->
-<script>
-  $(document).ready(function() {
-      $('.view-details').on('click', function() {
-          var eventId = $(this).data('event-id');
-          $.ajax({
-              url: '/get_event_details/',
-              type: 'GET',
-              data: {
-                  'event_id': eventId
-              },
-              success: function(response) {
-                  $('#eventDetailsBody').html(`
-                      <img src="${response.artist_photo_url}" alt="${response.artist_name}" class="img-fluid">
-                      <h3>${response.artist_name}</h3>
-                      <p><strong>Date:</strong> ${response.date}</p>
-                      <p><strong>Location:</strong> ${response.location}</p>
-                      <p><strong>Description:</strong> ${response.description}</p>
-                      <a href="https://ticketmaster.com" class="btn btn-primary" target="_blank">Purchase Tickets</a>
-                  `);
-                  $('#eventDetailsModal').modal('show');
-              },
-              error: function(xhr, status, error) {
-                  console.error(xhr.responseText);
-              }
-          });
-      });
-  });
-</script>
-
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
 {% endblock %}
