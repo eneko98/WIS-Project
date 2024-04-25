@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <link rel="stylesheet" href="{% static 'css/event_info.css' %}">
+
 <div class="content-wrapper">
     <div class="event-detail-box">
         <h1 class="event-title">{{ event.artist_name }}</h1>
@@ -10,8 +13,49 @@
             <p class="event-date"><strong>Date:</strong> {{ event.date|date:"F j, Y" }}</p>
             <p class="event-location"><strong>Location:</strong> {{ event.location }}</p>
             <p class="event-description">{{ event.description }}</p>
+            <div id="map"></div>
         </div>
         <a href="{% url 'events' %}" class="btn-back">&larr; Back to events</a>
     </div>
 </div>
+
+<!-- Include Leaflet JavaScript library at the bottom -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Function to initialize the map
+        function initMap() {
+            // Get the event location name
+            var locationName = "{{ event.location }}";
+
+            // Use Nominatim to geocode the location name to get its coordinates
+            fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + locationName)
+                .then(response => response.json())
+                .then(data => {
+                    // Extract latitude and longitude from the response
+                    var latitude = data[0].lat;
+                    var longitude = data[0].lon;
+
+                    // Create a map centered at the event location
+                    var map = L.map('map').setView([latitude, longitude], 15);
+
+                    // Add OpenStreetMap tile layer to the map
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: 'Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(map);
+
+                    // Place a marker at the event location
+                    var marker = L.marker([latitude, longitude]).addTo(map);
+                    marker.bindPopup(locationName).openPopup();
+
+                    // Fit the map bounds to include the marker
+                    var bounds = L.latLngBounds([[latitude, longitude]]);
+                    map.fitBounds(bounds);
+                });
+        }
+        // Call the initMap function when the DOM content is loaded
+        initMap();
+    });
+</script>
 {% endblock %}

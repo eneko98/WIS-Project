@@ -6,9 +6,11 @@
     min-height: 80vh; /* Adjust the height as needed to center the content vertically */
 }
 
+
 .event-detail-box {
     background: #fff;
     margin: 20px;
+    margin-bottom: 20px; /* added */
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -57,3 +59,12 @@
     color: #fff;
     text-decoration: none; /* Ensure text remains not underlined */
 }
+
+
+#map {
+    width: 100%; /* Make the map take up 100% of its container's width */
+    height: 400px;
+    margin-top: 20px; /* Adjust as needed */
+    margin-bottom: 20px;
+}
+
