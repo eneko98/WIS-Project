@@ -28,19 +28,21 @@
     <section class="details">
         <div class="container">
           <!-- Upcoming Events -->
-          {% if profile.upcoming_events %}
-            <div class="event-section">
+          {% if profile.upcoming_events.all %}
+          <div class="event-section">
               <h3>Upcoming Events</h3>
               <ul class="event-list">
-                <!-- Dynamically list events here -->
-                {% for event in profile.upcoming_events_list %}
-                  <li>
-                    <span class="event-date">{{ event.date }}</span>
-                    <span class="event-name">{{ event.name }}</span>
-                  </li>
-                {% endfor %}
+                  <!-- Dynamically list events here -->
+                  {% for event in profile.upcoming_events.all %}
+                    <li>
+                      <a class="event-link" href="{% url 'event_detail' event.id %}">
+                        <span class="event-date">{{ event.date|date:"F j, Y" }}</span>
+                        <span class="event-name">{{ event.artist_name }}</span>
+                      </a>
+                    </li>
+                  {% endfor %}
               </ul>
-            </div>
+          </div>
           {% endif %}
       
           <!-- Favorite Artists -->

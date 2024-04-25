@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import UserProfile
+from .models import UserProfile, Event
 from .models import Event
 from .forms import SignUpForm, UserProfileForm
 
@@ -50,10 +50,7 @@ def log_in(request):
 @login_required
 def profile(request):
     user = request.user
-    try:
-        profile = UserProfile.objects.get(user=user)
-    except UserProfile.DoesNotExist:
-        profile = None  # It might be a good idea to handle this case, perhaps redirect to a profile creation view.
+    profile, created = UserProfile.objects.get_or_create(user=user)
     context = {
         'profile': profile,
     }
@@ -64,7 +61,7 @@ def edit_profile(request):
     try:
         profile = UserProfile.objects.get(user=request.user)
     except UserProfile.DoesNotExist:
-        profile = UserProfile(user=request.user)  # Create a new profile if it doesn't exist
+        profile = UserProfile(user=request.user)
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=profile)
@@ -77,36 +74,11 @@ def edit_profile(request):
     context = {'form': form}
     return render(request, 'edit_profile.html', context)
 
-#Event page
-
-# def events(request):
-#     events = Event.objects.all()
-#     return render(request, 'events.html', {'events': events})
-
-# def get_event_details(request):
-#     if request.method == 'GET' and request.is_ajax():
-#         event_id = request.GET.get('event_id')
-#         event = Event.objects.get(pk=event_id)
-#         event_details = {
-#             'artist_name': event.artist_name,
-#             'location': event.location,
-#             'date': event.date.strftime('%B %d, %Y'),
-#             'description': event.description,
-#             'artist_photo_url': event.artist_photo.url,
-#         }
-#         return JsonResponse(event_details)
-#     else:
-#         return JsonResponse({'error': 'Invalid request'})
-
-#new version
-
-
 def events(request):
     artists = Event.objects.values_list('artist_name', flat=True).distinct()
     locations = Event.objects.values_list('location', flat=True).distinct()
     times = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
-    # Applying filters if any
     artistFilter = request.GET.get('artist')
     locationFilter = request.GET.get('location')
     timeFilter = request.GET.get('time')
@@ -131,3 +103,17 @@ def events(request):
 def event_detail(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
     return render(request, 'event_info.html', {'event': event})
+
+@login_required
+def add_to_upcoming(request, event_id):
+    event = Event.objects.get(id=event_id)
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_profile.upcoming_events.add(event)
+    return redirect('events')
+
+@login_required
+def remove_from_upcoming(request, event_id):
+    event = Event.objects.get(id=event_id)
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_profile.upcoming_events.remove(event)
+    return redirect('events')

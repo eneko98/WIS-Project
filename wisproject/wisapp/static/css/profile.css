@@ -118,3 +118,15 @@
   color: #ffffff !important;
   text-decoration: none !important; /* Ensure text remains not underlined */
 }
+
+.event-link {
+  color: #333 !important; /* grey-black color */
+  text-decoration: none !important; /* no underline by default */
+  transition: color 0.3s ease; /* smooth color transition */
+}
+
+.event-link:hover,
+.event-link:focus {
+  color: #555 !important; /* slightly lighter grey-black on hover */
+  text-decoration: underline !important; /* underline on hover */
+}

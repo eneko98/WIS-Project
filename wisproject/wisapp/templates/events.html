@@ -108,12 +108,10 @@
     <!-- Event Section -->
     <div id="filteredEventsSection" class="container mt-4">
         <!-- Filtered events will be displayed here -->
-        <!-- Event Section -->
         <div class="container container-border">
             {% for event in events %}
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-sm-2 align-self-center">
-                    <!-- <img src="{{ event.artist_photo.url }}" class="event-image"> -->
                     <img src="{{ event.artist_photo }}" class="event-image">
                 </div>
                 <div class="col-sm-2 align-self-center">
@@ -130,9 +128,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3 align-self-center">
+                <div class="col-sm-4 align-self-center text-end">
                     <button class="btn btn-primary view-details"
                         onclick="location.href='{% url 'event_detail' event.id %}'">View Show</button>
+                    {% if event in request.user.userprofile.upcoming_events.all %}
+                        <button class="btn btn-secondary view-details" onclick="location.href='{% url 'remove_from_upcoming' event.id %}'">Remove from Upcoming</button>
+                    {% else %}
+                        <button class="btn btn-secondary view-details" onclick="location.href='{% url 'add_to_upcoming' event.id %}'">Add to Upcoming</button>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
