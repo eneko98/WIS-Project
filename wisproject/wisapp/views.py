@@ -1,8 +1,10 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.urls import reverse
 from .models import UserProfile, Event
 from .models import Event
 from .forms import SignUpForm, UserProfileForm
@@ -18,6 +20,9 @@ def events(request):
 
 def contact(request):
     return render(request, 'contact.html')
+
+def thank_you(request):
+    return render(request, 'thank_you.html')
 
 def sign_up(request):
     if request.method == 'POST':
@@ -117,3 +122,16 @@ def remove_from_upcoming(request, event_id):
     user_profile = UserProfile.objects.get(user=request.user)
     user_profile.upcoming_events.remove(event)
     return redirect('events')
+
+def subscribe(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        send_mail(
+            'Subscription Confirmation',
+            'Thank you for subscribing to our updates!',
+            'recordstarantula@gmail.com',
+            [email],
+            fail_silently=False,
+        )
+        return HttpResponseRedirect(reverse('thank_you'))
+    return render(request, 'contact.html')

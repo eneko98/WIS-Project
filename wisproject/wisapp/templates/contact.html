@@ -2,104 +2,40 @@
 {% load static %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    /* Custom CSS for styling */
-    body {
-      background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fisorepublic.com%2Fwp-content%2Fuploads%2F2018%2F11%2Fmusic-band-on-stage.jpg&f=1&nofb=1&ipt=9a6e8db9597466a17a0a359413098f983946a53d51f511186986af57a33aaec5&ipo=images'); /* Background image */
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed; /* Fixed background */
-      padding-top: 50px; /* Space from top */
-      padding-bottom: 50px; /* Space from bottom */
-    }
-    .section {
-      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-      border-radius: 10px;
-      padding: 20px;
-      margin: 200px auto; /* Center the sections */
-      max-width: 500px; /* Limit width of sections */
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    h2 {
-      color: #007bff;
-      text-align: center; /* Center the headings */
-    }
-    ul {
-      list-style-type: none;
-      padding-left: 0;
-    }
-    ul li {
-      margin-bottom: 10px;
-    }
-    ul li a {
-      color: #212529;
-      text-decoration: none;
-    }
-    ul li a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-
-<div class="container">
-  <div class="row justify-content-center"> <!-- Center the row -->
-    <!-- Updates Section -->
-    <div class="col-sm">
-      <div class="section">
-        <h2>Updates</h2>
-        <form id="subscribeForm">
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter your email">
-          </div>
-          <button type="submit" class="btn btn-primary">Subscribe</button>
-        </form>
-      </div>
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+<div class="contact-container">
+<!-- Subscription Section -->
+<div class="contact-section">
+  <h2>Updates</h2>
+  <form id="subscribeForm" class="contact-form" method="post" action="{% url 'subscribe' %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email" required>
     </div>
-
-    <!-- Follow Section -->
-    <div class="col-sm">
-      <div class="section">
-        <h2>Follow Us</h2>
-        <ul>
-          <li><a href="https://www.facebook.com/profile.php?id=61558488683954&sk=about" target="_blank">Facebook</a></li>
-          <li><a href="https://www.instagram.com/yourpage" target="_blank">Instagram</a></li>
-          <li><a href="https://www.linkedin.com/in/tarantula-wis-269148303/" target="_blank">LinkedIn</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Address Section -->
-    <div class="col-sm">
-      <div class="section">
-        <h2>Address</h2>
-        <p>Tervuursestraat 56, 3000 Leuven Belgium</p>
-      </div>
-    </div>
-  </div>
+    <button type="submit" class="btn btn-primary">Subscribe</button>
+  </form>
 </div>
 
-<script>
-  function addSubmitEventListener() {
-    document.getElementById("subscribeForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // Prevent the default form submission
-      var email = document.getElementById("email").value;
-      alert("You will hear from us soon! We will contact you at: " + email);
-      // You can add code here to send the confirmation email using Node.js or any other backend technology
-    });
-  }
-  addSubmitEventListener();
-</script>
 
-</body>
-</html>
+  <!-- Follow Section -->
+  <div class="contact-section">
+    <h2>Follow Us</h2>
+    <ul class="social-links">
+      <li><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
+      <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+      <li><a href="https://www.linkedin.com/" target="_blank">LinkedIn</a></li>
+    </ul>
+  </div>
+
+  <!-- Address Section -->
+  <div class="contact-section">
+    <h2>Address</h2>
+    <p>Celestijnenlaan<br>Leuven, Belgium</p>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/contact.js' %}"></script>
 {% endblock %}

@@ -15,5 +15,7 @@ urlpatterns = [
     path('events/', views.events, name='events'),
     path('event/<int:event_id>/', views.event_detail, name='event_detail'),
     path('contact/', views.contact, name='contact'),
+    path('subscribe/', views.subscribe, name='subscribe'),
+    path('thank-you/', views.thank_you, name='thank_you'),
     path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
 ]
