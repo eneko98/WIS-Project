@@ -1,22 +1,82 @@
-from django.http import JsonResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.urls import reverse
-from .models import UserProfile, Event
-from .models import Event
+from .models import UserProfile, Event, Artist
 from .forms import SignUpForm, UserProfileForm
+
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
 
 def home(request):
     return render(request, 'home.html')
 
 def artists(request):
-    return render(request, 'artists.html')
+    all_artists = Artist.objects.prefetch_related('albums', 'events').all()
+    return render(request, 'artists.html', {'artists': all_artists})
+
+def artist_detail(request, artist_id):
+    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="a77b2127f86d4ba8b0ced59c2fa57adf", client_secret="f324f47feba24329a38f42420b38bac1"))
+
+    artist = get_object_or_404(Artist, pk=artist_id)
+    
+    top_tracks_data = []
+
+    top_tracks_data = sp.artist_top_tracks(artist.spotify_id)['tracks'][:4] if artist.spotify_id else [] 
+
+    related_artists_data = sp.artist_related_artists(artist.spotify_id)['artists'][:4] if artist.spotify_id else []
+
+    top_tracks = [
+        {
+            'name': track['name'],
+            'album': track['album']['name'],
+            'release_date': track['album']['release_date'],
+            'preview_url': track['preview_url']
+        } for track in top_tracks_data if track['preview_url']
+    ]
+
+    related_artists = [
+        {
+            'name': artist['name'],
+            'image_url': artist['images'][0]['url'] if artist['images'] else None,
+            'spotify_album_url': artist['external_urls']['spotify']  # Placeholder for album's Spotify URL
+        } for artist in related_artists_data
+    ]
+
+    return render(request, 'artist_detail.html', {'artist': artist, 'top_tracks': top_tracks, 'related_artists': related_artists})
 
 def events(request):
-    return render(request, 'events.html')
+    artists = Artist.objects.all()
+    locations = Event.objects.order_by('location').values_list('location', flat=True).distinct()
+    times = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+    artistFilter = request.GET.get('artist')
+    locationFilter = request.GET.get('location')
+    timeFilter = request.GET.get('time')
+
+    events = Event.objects.select_related('artist').all()
+
+    if artistFilter:
+        events = events.filter(artist__id=artistFilter)
+    if locationFilter:
+        events = events.filter(location=locationFilter)
+    if timeFilter:
+        events = events.filter(date__month=int(timeFilter))
+
+    context = {
+        'events': events,
+        'artists': artists,
+        'locations': locations,
+        'times': times,
+    }
+    return render(request, 'events.html', context)
+
+def event_detail(request, event_id):
+    event = get_object_or_404(Event, pk=event_id)
+    return render(request, 'event_info.html', {'event': event})
 
 def contact(request):
     return render(request, 'contact.html')
@@ -78,36 +138,6 @@ def edit_profile(request):
 
     context = {'form': form}
     return render(request, 'edit_profile.html', context)
-
-def events(request):
-    artists = Event.objects.values_list('artist_name', flat=True).distinct()
-    locations = Event.objects.values_list('location', flat=True).distinct()
-    times = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-
-    artistFilter = request.GET.get('artist')
-    locationFilter = request.GET.get('location')
-    timeFilter = request.GET.get('time')
-
-    events = Event.objects.all()
-
-    if artistFilter:
-        events = events.filter(artist_name=artistFilter)
-    if locationFilter:
-        events = events.filter(location=locationFilter)
-    if timeFilter:
-        events = events.filter(date__month=timeFilter) #timeFilter = request.GET.get('time')
-
-    context = {
-        'events': events,
-        'artists': artists,
-        'locations': locations,
-        'times': times,
-    }
-    return render(request, 'events.html', context)
-
-def event_detail(request, event_id):
-    event = get_object_or_404(Event, pk=event_id)
-    return render(request, 'event_info.html', {'event': event})
 
 @login_required
 def add_to_upcoming(request, event_id):

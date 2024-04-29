@@ -12,6 +12,7 @@ urlpatterns = [
     path('add-to-upcoming/<int:event_id>/', views.add_to_upcoming, name='add_to_upcoming'),
     path('remove-from-upcoming/<int:event_id>/', views.remove_from_upcoming, name='remove_from_upcoming'),
     path('artists/', views.artists, name='artists'),
+    path('artists/<int:artist_id>/', views.artist_detail, name='artist_detail'),
     path('events/', views.events, name='events'),
     path('event/<int:event_id>/', views.event_detail, name='event_detail'),
     path('contact/', views.contact, name='contact'),
