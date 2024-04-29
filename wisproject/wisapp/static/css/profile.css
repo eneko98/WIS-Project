@@ -92,6 +92,12 @@
   margin-right: 10px;
 }
 
+.artist-name {
+  font-weight: bold; /* This will apply bold styling */
+  margin-right: 10px;
+}
+
+
 .album-title {
   margin-right: 10px;
 }

@@ -38,7 +38,7 @@ class UserProfile(models.Model):
     spotify_link = models.URLField(blank=True, null=True)
     twitter_link = models.URLField(blank=True, null=True)
     upcoming_events = models.ManyToManyField(Event, blank=True)
-    favorite_artists = models.TextField(blank=True, help_text="Other bands or singers they like")
+    favorite_artists = models.ManyToManyField('Artist', related_name='favorited_by')
     favorite_albums = models.TextField(blank=True, help_text="Other favorite albums")
 
     def __str__(self):

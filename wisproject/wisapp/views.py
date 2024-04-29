@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
@@ -42,7 +42,7 @@ def artist_detail(request, artist_id):
         {
             'name': artist['name'],
             'image_url': artist['images'][0]['url'] if artist['images'] else None,
-            'spotify_album_url': artist['external_urls']['spotify']  # Placeholder for album's Spotify URL
+            'spotify_album_url': artist['external_urls']['spotify']
         } for artist in related_artists_data
     ]
 
@@ -152,6 +152,20 @@ def remove_from_upcoming(request, event_id):
     user_profile = UserProfile.objects.get(user=request.user)
     user_profile.upcoming_events.remove(event)
     return redirect('events')
+
+@login_required
+def add_artists_to_favorites(request, artist_id):
+    artist = get_object_or_404(Artist, id=artist_id)
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_profile.favorite_artists.add(artist)
+    return JsonResponse({'status': 'success', 'action': 'added', 'artist_id': artist_id})
+
+@login_required
+def remove_artists_from_favorites(request, artist_id):
+    artist = get_object_or_404(Artist, id=artist_id)
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_profile.favorite_artists.remove(artist)
+    return JsonResponse({'status': 'success', 'action': 'removed', 'artist_id': artist_id})
 
 def subscribe(request):
     if request.method == 'POST':

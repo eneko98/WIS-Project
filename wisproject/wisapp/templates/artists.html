@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/artists.css' %}">
 <div class="container mt-5">
@@ -15,6 +16,16 @@
                     <h5 class="card-title">{{ artist.name }}</h5>
                     <p class="card-subtitle mb-2 text-muted">{{ artist.genre }}</p>
                     <p class="card-text">{{ artist.bio }}</p>
+                    <!-- Favorite button -->
+                    {% if artist in request.user.userprofile.favorite_artists.all %}
+                    <a href="{% url 'remove-artists-from-favorites' artist.id %}" class="btn btn-outline-danger favorite-toggle">
+                        ★ Remove from Favorites
+                    </a>
+                    {% else %}
+                    <a href="{% url 'add-artists-to-favorites' artist.id %}" class="btn btn-outline-primary favorite-toggle">
+                        ☆ Add to Favorites
+                    </a>
+                    {% endif %}
                 </div>
                 <div class="card-footer bg-white text-center">
                     <a href="{% url 'artist_detail' artist.id %}" class="btn btn-outline-secondary btn-view-details">View Details</a>
@@ -24,4 +35,5 @@
         {% endfor %}
     </div>
 </div>
+<script src="{% static 'js/favorite_artists.js' %}"></script>
 {% endblock %}

@@ -129,13 +129,13 @@
                     </div>
                 </div>
                 <div class="col-sm-4 align-self-center text-end">
-                    <button class="btn btn-primary view-details"
+                    <button class="btn btn-outline-primary view-details"
                         onclick="location.href='{% url 'event_detail' event.id %}'">View Show</button>
                     <!-- Example conditional buttons for upcoming events -->
                     {% if event in request.user.userprofile.upcoming_events.all %}
-                        <button class="btn btn-secondary view-details" onclick="location.href='{% url 'remove_from_upcoming' event.id %}'">Remove from Upcoming</button>
+                        <button class="btn btn-outline-secondary view-details" onclick="location.href='{% url 'remove_from_upcoming' event.id %}'">Remove from Upcoming</button>
                     {% else %}
-                        <button class="btn btn-secondary view-details" onclick="location.href='{% url 'add_to_upcoming' event.id %}'">Add to Upcoming</button>
+                        <button class="btn btn-outline-secondary view-details" onclick="location.href='{% url 'add_to_upcoming' event.id %}'">Add to Upcoming</button>
                     {% endif %}
                 </div>
             </div>

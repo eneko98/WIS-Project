@@ -10,7 +10,7 @@
         <img src="{% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}{% static 'images/New-FAIces-scaled.jpg' %}{% endif %}" alt="Profile Picture" class="profile-picture">
         <div>
             <h2>{{ profile.user.username }}</h2>
-            <a href="{% url 'edit_profile' %}" class="edit-profile-btn">Edit Profile</a>
+            <a href="{% url 'edit_profile' %}" class=" btn btn-outline-primary">Edit Profile</a>
         </div>
         <p>{{ profile.bio }}</p>
         <div class="social-links">
@@ -46,17 +46,22 @@
           {% endif %}
       
           <!-- Favorite Artists -->
-          {% if profile.favorite_artists %}
-            <div class="artist-section">
-              <h3>Favorite Artists</h3>
-              <ul class="artist-list">
-                <!-- Dynamically list artists here -->
-                {% for artist in profile.favorite_artists_list %}
-                  <li>{{ artist.name }}</li>
-                {% endfor %}
-              </ul>
-            </div>
+          {% if profile.favorite_artists.exists %}
+          <div class="artist-section">
+            <h3>Favorite Artists</h3>
+            <ul class="artist-list">
+              <!-- Dynamically list artists here -->
+              {% for artist in profile.favorite_artists.all %}
+                <li>
+                  <a href="{% url 'artist_detail' artist.id %}" class="event-link artist-name">
+                    {{ artist.name }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
           {% endif %}
+
       
           <!-- Favorite Albums -->
           {% if profile.favorite_albums %}
