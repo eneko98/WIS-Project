@@ -22,14 +22,14 @@ class Album(models.Model):
         return self.name
     
 class Event(models.Model):
-    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name='events', null=True)
     photo = models.URLField(blank=True, null=True)
+    artist_name = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name='events', null=True)
     location = models.CharField(max_length=100)
     date = models.DateField()
     description = models.TextField()
 
     def __str__(self):
-        return self.artist_name
+        return self.location
     
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

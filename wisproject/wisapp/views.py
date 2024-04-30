@@ -57,7 +57,7 @@ def events(request):
     locationFilter = request.GET.get('location')
     timeFilter = request.GET.get('time')
 
-    events = Event.objects.select_related('artist').all()
+    events = Event.objects.select_related('artist_name').all()
 
     if artistFilter:
         events = events.filter(artist__id=artistFilter)
