@@ -23,6 +23,7 @@ class Album(models.Model):
     
 class Event(models.Model):
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name='events', null=True)
+    photo = models.URLField(blank=True, null=True)
     location = models.CharField(max_length=100)
     date = models.DateField()
     description = models.TextField()
