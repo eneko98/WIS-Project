@@ -1,0 +1,114 @@
+/* General body styling */
+body {
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+    padding-top: 20px; /* Add space between the navbar and the content */
+}
+
+.main-container {
+    background-color: #fff;
+    padding: 20px;
+    margin: 40px auto;
+    max-width: 960px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Section Styling */
+#filteredEventsSection {
+    background-color: #fff;
+    padding: 20px;
+    margin: 40px auto;
+    max-width: 960px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+
+/* Event card styling */
+.row.mb-3 {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center; /* Center content vertically */
+    text-align: center;
+}
+
+.event-image {
+    max-height: 150px;
+    width: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.event-info p {
+    color: #333;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* Color update for favorite and view details buttons */
+.btn-outline-primary {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.btn-outline-secondary {
+    background-color: #6c757d;
+    color: #fff;
+    border-color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+/* Adding margin between buttons */
+.view-details {
+    margin-right: 20px; /* Increased right margin for more space between buttons */
+}
+
+.form-row {
+    margin-bottom: 20px;  /* Adjust as necessary for desired spacing */
+}
+
+@media (max-width: 1200px) {
+    .row.mb-3 {
+        flex-direction: column; /* Stack vertically on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .row.mb-3 {
+        flex-direction: column;
+        width: 90%; /* More space-efficient on small screens */
+    }
+}
+
+/* Ensure buttons don't touch in smaller views */
+@media (max-width: 768px) {
+    .view-details {
+        margin-right: 0; /* No right margin on mobile */
+        margin-bottom: 10px; /* Space between stacked buttons */
+    }
+}

@@ -1,2 +1,56 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<!-- Featured Artists Section -->
+<section id="featured-artists">
+    <h2>Featured Artists</h2>
+    <div class="artist-list">
+        {% for artist in latest_artists %}
+        <div class="artist">
+            <img src="{{ artist.photo }}" alt="{{ artist.name }}">
+            <h4>{{ artist.name }}</h4>
+            <p>Genre: {{ artist.genre }}</p>
+            <p>{{ artist.bio }}</p>
+            <a href="{% url 'artist_detail' artist.id %}" class="btn btn-primary">Learn More</a>
+        </div>
+        {% empty %}
+        <p>No artists found.</p>
+        {% endfor %}
+    </div>
+</section>
+<!-- Latest Releases Section -->
+<section id="latest-releases">
+    <h2>Latest Releases</h2>
+    <div class="release-list">
+        {% for release in latest_releases %}
+        <div class="release">
+            <img src="{{ release.cover_url }}" alt="{{ release.name }}">
+            <h4>{{ release.name }}</h4>
+            <p>By: {{ release.artist }}</p>
+            <p>Released: {{ release.release_date }}</p>
+            <a href="{{ release.spotify_url }}" class="btn btn-primary" target="_blank">Listen on Spotify</a>
+        </div>
+        {% empty %}
+        <p>No new releases found.</p>
+        {% endfor %}
+    </div>
+</section>
+<!-- Latest Albums Section -->
+<section id="latest-albums">
+    <h2>Latest Albums</h2>
+    <div class="album-list">
+        {% for album in latest_albums %}
+        <div class="album">
+            <img src="{{ album.cover_url }}" alt="{{ album.name }}">
+            <h4>{{ album.name }}</h4>
+            <p>Released by: {{ album.artist__name }}</p>
+            <p>Release Date: {{ album.release_date }}</p>
+        </div>
+        {% empty %}
+        <p>No albums found.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

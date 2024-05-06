@@ -51,7 +51,17 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h5>{{ album.name }}</h5>
                     <p>{{ album.genre }} (Released on {{ album.release_date }})</p>
-                </div>
+                    <!-- Favorite button -->
+                    {% if album in request.user.userprofile.favorite_albums.all %}
+                    <a href="{% url 'remove-album-from-favorites' album.id %}" class="btn btn-danger albums-favorite-toggle" data-album-id="{{ album.id }}" data-add-url="{% url 'add-album-to-favorites' album.id %}" data-remove-url="{% url 'remove-album-from-favorites' album.id %}">
+                        ★
+                    </a>
+                    {% else %}
+                    <a href="{% url 'add-album-to-favorites' album.id %}" class="btn btn-primary albums-favorite-toggle" data-album-id="{{ album.id }}" data-add-url="{% url 'add-album-to-favorites' album.id %}" data-remove-url="{% url 'remove-album-from-favorites' album.id %}">
+                        ☆
+                    </a>
+                    {% endif %}
+                    </div>
             </div>
             {% endfor %}
         </div>
@@ -97,7 +107,9 @@
         </ul>
     </div>
 </div>
+
 {% endblock %}
 {% block additional_scripts %}
+<script src="{% static 'js/favorite_albums.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock additional_scripts %}

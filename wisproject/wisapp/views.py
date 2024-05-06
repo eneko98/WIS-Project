@@ -5,21 +5,42 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.urls import reverse
-from .models import UserProfile, Event, Artist
+from django.conf import settings
+from django.db.models import F
+from .models import UserProfile, Event, Artist, Album
 from .forms import SignUpForm, UserProfileForm
 
-import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
+from .spotify_utils import get_spotify_client, fetch_latest_releases_by_artists
+
+import datetime
 
 def home(request):
-    return render(request, 'home.html')
+    try:
+        artists = Artist.objects.all().order_by('-id')[:9]
+        artist_list = list(artists.values('id', 'name', 'photo', 'genre', 'bio', 'spotify_id'))
+        latest_releases = fetch_latest_releases_by_artists([artist['name'] for artist in artist_list])
+    
+        albums = Album.objects.select_related('artist').all().order_by('-release_date')[:9]  # Fetch the latest 9 albums
+        album_list = list(albums.values('id', 'name', 'cover_url', 'release_date', 'artist__name'))
+    except Exception as e:
+        latest_releases = []
+        artist_list = []
+        album_list = []
+        print(f"Error fetching data: {e}")
+
+    context = {
+        'latest_releases': latest_releases,
+        'latest_artists': artist_list,
+        'latest_albums': album_list,
+    }
+    return render(request, 'home.html', context)
 
 def artists(request):
     all_artists = Artist.objects.prefetch_related('albums', 'events').all()
     return render(request, 'artists.html', {'artists': all_artists})
 
 def artist_detail(request, artist_id):
-    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="a77b2127f86d4ba8b0ced59c2fa57adf", client_secret="f324f47feba24329a38f42420b38bac1"))
+    sp = get_spotify_client()
 
     artist = get_object_or_404(Artist, pk=artist_id)
     
@@ -166,6 +187,20 @@ def remove_artists_from_favorites(request, artist_id):
     user_profile = UserProfile.objects.get(user=request.user)
     user_profile.favorite_artists.remove(artist)
     return JsonResponse({'status': 'success', 'action': 'removed', 'artist_id': artist_id})
+
+@login_required
+def add_album_to_favorites(request, album_id):
+    album = get_object_or_404(Album, id=album_id)
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_profile.favorite_albums.add(album)
+    return JsonResponse({'status': 'success', 'action': 'added', 'album_id': album_id})
+
+@login_required
+def remove_album_from_favorites(request, album_id):
+    album = get_object_or_404(Album, id=album_id)
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_profile.favorite_albums.remove(album)
+    return JsonResponse({'status': 'success', 'action': 'removed', 'album_id': album_id})
 
 def subscribe(request):
     if request.method == 'POST':

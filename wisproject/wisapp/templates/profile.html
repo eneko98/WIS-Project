@@ -49,7 +49,7 @@
           {% if profile.favorite_artists.exists %}
           <div class="artist-section">
             <h3>Favorite Artists</h3>
-            <ul class="artist-list">
+            <ul class="artist-list" id="favoriteAlbumList">
               <!-- Dynamically list artists here -->
               {% for artist in profile.favorite_artists.all %}
                 <li>
@@ -64,20 +64,21 @@
 
       
           <!-- Favorite Albums -->
-          {% if profile.favorite_albums %}
-            <div class="album-section">
-              <h3>Favorite Albums</h3>
-              <ul class="album-list">
-                <!-- Dynamically list albums here -->
-                {% for album in profile.favorite_albums_list %}
-                  <li>
-                    <span class="album-title">{{ album.title }}</span>
-                    <!-- Album cover images -->
-                    <img src="{{ album.cover_url }}" alt="Cover image for {{ album.title }}">
-                  </li>
-                {% endfor %}
-              </ul>
-            </div>
+          {% if profile.favorite_albums.exists %}
+          <div class="album-section">
+            <h3>Favorite Albums</h3>
+            <ul class="album-list" id="favoriteAlbumList">
+              <!-- Dynamically list albums here -->
+              {% for album in profile.favorite_albums.all %}
+              <li id="album_{{ album.id }}">
+                <a href="{{ album.spotify_url }}" target="_blank"> <!-- Opens Spotify link in a new tab -->
+                  <span class="album-title">{{ album.title }}</span>
+                  <img src="{{ album.cover_url }}" alt="Cover image for {{ album.title }}">
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
           {% endif %}
         </div>
       </section>

@@ -17,6 +17,7 @@ class Album(models.Model):
     genre = models.CharField(max_length=50)
     release_date = models.DateField()
     cover_url = models.URLField(max_length=200, blank=True, null=True)
+    spotify_url = models.URLField(max_length=200, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -40,7 +41,7 @@ class UserProfile(models.Model):
     twitter_link = models.URLField(blank=True, null=True)
     upcoming_events = models.ManyToManyField(Event, blank=True)
     favorite_artists = models.ManyToManyField('Artist', related_name='favorited_by')
-    favorite_albums = models.TextField(blank=True, help_text="Other favorite albums")
+    favorite_albums = models.ManyToManyField('Album', blank=True, related_name='favorited_by')
 
     def __str__(self):
         return f"{self.user.username}'s profile"

@@ -1,69 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
-<html>
-<!DOCTYPE html>
-<html lang="en">
+<!-- Link to the events-specific stylesheet -->
+<link href="{% static 'css/events.css' %}" rel="stylesheet">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <style>
-        /* Custom CSS */
-        .header {
-            background-color: transparent;
-            background-size: cover;
-            color: black;
-            text-align: center;
-            align-items: center;
-            height: 15vh;
-            display: flex;
-        }
-
-        .filter-section {
-            margin-top: 20px;
-            text-align: left;
-        }
-
-        .event-image {
-            max-width: 200px;
-            height: 200px;
-        }
-
-        .event-info {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-
-        .date-container {
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .event-content {
-            margin-left: 20px;
-        }
-
-        .event-list {
-            align-items: center;
-        }
-
-        .container-border {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-    </style>
-</head>
-
-<body>
+<div class="main-container">
     <!-- Header Section -->
     <div class="header">
         <h1>Events</h1>
@@ -73,7 +15,7 @@
     <div class="container mt-4">
         <form method="GET" action="{% url 'events' %}">
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="artist">Artist</label>
                     <select id="artist" name="artist" class="form-control">
                         <option value="">All Artists</option>
@@ -82,7 +24,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="location">Location</label>
                     <select id="location" name="location" class="form-control">
                         <option value="">All Locations</option>
@@ -91,7 +33,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="time">Month</label>
                     <select id="time" name="time" class="form-control">
                         <option value="">All Months</option>
@@ -100,14 +42,15 @@
                         {% endfor %}
                     </select>
                 </div>
+                <div class="col-md-3 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100">Filter</button>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Filter</button>
         </form>
     </div>
 
     <!-- Event Section -->
     <div id="filteredEventsSection" class="container mt-4">
-        <!-- Filtered events will be displayed here -->
         <div class="container container-border">
             {% for event in events %}
             <div class="row mb-3">
@@ -131,8 +74,6 @@
                 <div class="col-sm-4 align-self-center text-end">
                     <button class="btn btn-outline-primary view-details"
                         onclick="location.href='{% url 'event_detail' event.id %}'">View Show</button>
-                        <!-- event_info no? -->
-                    <!-- Example conditional buttons for upcoming events -->
                     {% if event in request.user.userprofile.upcoming_events.all %}
                         <button class="btn btn-outline-secondary view-details" onclick="location.href='{% url 'remove_from_upcoming' event.id %}'">Remove from Upcoming</button>
                     {% else %}
@@ -143,12 +84,5 @@
             {% endfor %}
         </div>
     </div>
-
-
-    <!-- Bootstrap JS and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+</div>
 {% endblock %}
