@@ -5,33 +5,33 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.urls import reverse
-from django.conf import settings
-from django.db.models import F
-from .models import UserProfile, Event, Artist, Album
+from django.views.generic import DetailView
+from .models import UserProfile, Event, Artist, Album, News
 from .forms import SignUpForm, UserProfileForm
 
 from .spotify_utils import get_spotify_client, fetch_latest_releases_by_artists
-
-import datetime
 
 def home(request):
     try:
         artists = Artist.objects.all().order_by('-id')[:9]
         artist_list = list(artists.values('id', 'name', 'photo', 'genre', 'bio', 'spotify_id'))
         latest_releases = fetch_latest_releases_by_artists([artist['name'] for artist in artist_list])
-    
-        albums = Album.objects.select_related('artist').all().order_by('-release_date')[:9]  # Fetch the latest 9 albums
+        albums = Album.objects.select_related('artist').all().order_by('-release_date')[:9]
         album_list = list(albums.values('id', 'name', 'cover_url', 'release_date', 'artist__name'))
+        news_list = News.objects.all().order_by('-publication_date')[:10]
+
     except Exception as e:
         latest_releases = []
         artist_list = []
         album_list = []
+        news_list = []
         print(f"Error fetching data: {e}")
 
     context = {
         'latest_releases': latest_releases,
         'latest_artists': artist_list,
         'latest_albums': album_list,
+        'news_list': news_list,
     }
     return render(request, 'home.html', context)
 
@@ -98,6 +98,13 @@ def events(request):
 def event_detail(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
     return render(request, 'event_info.html', {'event': event})
+
+class NewsDetailView(DetailView):
+    model = News
+    template_name = 'news_detail.html'
+
+    def get_queryset(self):
+        return News.objects.all().order_by('-publication_date')
 
 def contact(request):
     return render(request, 'contact.html')

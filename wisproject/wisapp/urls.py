@@ -19,6 +19,7 @@ urlpatterns = [
     path('event/<int:event_id>/', views.event_detail, name='event_detail'),
     path('add-to-upcoming/<int:event_id>/', views.add_to_upcoming, name='add_to_upcoming'),
     path('remove-from-upcoming/<int:event_id>/', views.remove_from_upcoming, name='remove_from_upcoming'),
+    path('news/<int:pk>/', views.NewsDetailView.as_view(), name='news_detail'),
     path('contact/', views.contact, name='contact'),
     path('subscribe/', views.subscribe, name='subscribe'),
     path('thank-you/', views.thank_you, name='thank_you'),

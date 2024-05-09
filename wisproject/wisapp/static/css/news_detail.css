@@ -1,0 +1,45 @@
+.news-detail-image {
+    width: 100%; /* Ensures the image is full width */
+    max-height: 400px; /* Optional height limit */
+    object-fit: cover; /* Ensures the image covers the area without distorting aspect ratio */
+    border-radius: 8px 8px 0 0; /* Rounded corners at the top only */
+    margin: 0; /* Removes any default margin */
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 0; /* Ensures no padding affects the child elements */
+    background-color: #fff;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Ensures no overflow content is visible */
+}
+
+.news-detail-card {
+    padding: 20px; /* Padding for text content, not the image */
+    border-radius: 8px; /* Ensures rounded corners are maintained */
+}
+
+.news-detail-content {
+    line-height: 1.6; /* For better readability of the content */
+}
+
+.news-detail-date {
+    color: #777;
+    font-size: 0.9em;
+    margin-top: 10px; /* Space above the date for clear separation */
+}
+
+h1 {
+    color: #333;
+    font-size: 24px; /* Clear and visible title size */
+}
+
+img {
+    display: block; /* Removes any space below the image */
+    max-width: 100%; /* Ensures the image is not bigger than its container */
+    height: auto; /* Keeps the aspect ratio */
+}
+
+

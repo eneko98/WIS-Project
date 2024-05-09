@@ -5,18 +5,18 @@ body {
     padding-top: 20px; /* Add space between the navbar and the content */
 }
 
-/* General Section Styling for Consistency */
-#featured-artists, #latest-releases, #latest-albums {
+/* General Section Styling for Full Width */
+#featured-artists, #latest-releases, #latest-albums, #news-announcements {
     background-color: #fff;
-    padding: 20px;
-    margin: 40px auto;
-    max-width: 960px;
+    padding: 20px 30px; /* Increased padding on the sides */
+    margin: 20px 20px; /* Consistent margin for some spacing from the screen edge */
+    width: calc(100% - 40px); /* Full width minus margin */
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 /* Section Title Styling for Consistency */
-#featured-artists h2, #latest-releases h2, #latest-albums h2 {
+#featured-artists h2, #latest-releases h2, #latest-albums h2, #news-announcements h2 {
     text-align: center;
     background-color: #333;
     color: #fff;
@@ -25,8 +25,8 @@ body {
     margin-bottom: 20px;
 }
 
-/* List Styling for Flex Layout */
-.artist-list, .release-list, .album-list {
+/* Flex Layout Adjustments for Four Cards per Row */
+.artist-list, .release-list, .album-list, .news-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -56,21 +56,20 @@ body {
     color: inherit; /* Keeps text color consistent with the rest of your design */
 }
 
-/* Card styling for Artists and Releases */
 .artist, .release, .album {
-    flex: 0 1 30%; /* Adjusts for three cards per row on larger screens */
+    flex: 0 1 22%; /* Adjusts for four cards per row on larger screens */
+    margin: 10px; /* Slightly reduced to fit four cards */
+    padding: 10px;
     background-color: #fff;
     border: 1px solid #eee;
     border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center; /* Center content for artists specifically */
-    text-align: center; /* Center text for artist cards */
-    height: 100%; /* Make sure cards are of equal height */
+    align-items: center;
+    text-align: center;
+    height: 100%; /* Ensure cards are of equal height */
 }
 
 /* Ensure uniform image styling */
@@ -113,15 +112,32 @@ body {
     z-index: 10; /* Make sure the hovered item is above others */
 }
 
-/* Responsive adjustments for uniformity */
+/* Responsive adjustments for better utilization of space */
+@media (min-width: 1200px) {
+    #featured-artists, #latest-releases, #latest-albums, #news-announcements {
+        margin: 40px 10px; /* Less horizontal margin on very large screens */
+    }
+}
+
+/* Responsive Adjustments */
 @media (max-width: 1200px) {
-    .artist, .release {
-        flex: 0 1 30%; /* 3 cards per row on medium screens */
+    .artist, .release, .album {
+        flex: 0 1 45%; /* Two cards per row on medium screens */
     }
 }
 
 @media (max-width: 768px) {
+    .artist, .release, .album {
+        flex: 0 1 90%; /* One card per row on small screens, better use of space */
+    }
+}
+
+@media (max-width: 768px) {
+    #featured-artists, #latest-releases, #latest-albums, #news-announcements {
+        margin: 20px 10px; /* Reduced margin on smaller screens */
+    }
+
     .artist, .release {
-        flex: 0 1 90%; /* 1 card per row on small screens */
+        flex: 0 1 90%; /* 1 card per row on small screens, more horizontal space usage */
     }
 }

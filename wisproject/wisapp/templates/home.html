@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 <!-- Featured Artists Section -->
@@ -53,4 +52,21 @@
         {% endfor %}
     </div>
 </section>
+<!-- News & Announcements Section -->
+<section id="news-announcements">
+    <h2>News & Announcements</h2>
+    <div class="news-list">
+        {% for news in news_list %}
+        <div class="news-card">
+            <h4>{{ news.title }}</h4>
+            <p>{{ news.content|truncatewords:30 }}</p>
+            <p>Published on: {{ news.publication_date|date:"Y-m-d" }}</p>
+            <a href="{% url 'news_detail' news.id %}" class="btn btn-primary">Read More</a>
+        </div>
+        {% empty %}
+        <p>No news available.</p>
+        {% endfor %}
+    </div>
+</section>
+
 {% endblock %}
