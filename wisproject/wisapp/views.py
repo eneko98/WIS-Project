@@ -17,7 +17,7 @@ def home(request):
         artist_list = list(artists.values('id', 'name', 'photo', 'genre', 'bio', 'spotify_id'))
         latest_releases = fetch_latest_releases_by_artists([artist['name'] for artist in artist_list])
         albums = Album.objects.select_related('artist').all().order_by('-release_date')[:9]
-        album_list = list(albums.values('id', 'name', 'cover_url', 'release_date', 'artist__name'))
+        album_list = list(albums.values('id', 'name', 'cover_url', 'release_date', 'artist__name', 'spotify_url'))
         news_list = News.objects.all().order_by('-publication_date')[:10]
 
     except Exception as e:

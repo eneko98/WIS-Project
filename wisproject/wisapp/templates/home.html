@@ -42,8 +42,10 @@
     <div class="album-list">
         {% for album in latest_albums %}
         <div class="album">
-            <img src="{{ album.cover_url }}" alt="{{ album.name }}">
-            <h4>{{ album.name }}</h4>
+            <a href="{{ album.spotify_url }}" target="_blank">
+                <img src="{{ album.cover_url }}" alt="{{ album.name }}">
+                <h4>{{ album.name }}</h4>
+            </a>
             <p>Released by: {{ album.artist__name }}</p>
             <p>Release Date: {{ album.release_date }}</p>
         </div>
