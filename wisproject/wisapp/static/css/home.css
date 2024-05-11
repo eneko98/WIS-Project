@@ -45,6 +45,11 @@ body {
     text-decoration: none; /* Remove underline */
 }
 
+.album a {
+    text-decoration: none; /* Removes underline from links */
+    color: inherit; /* Inherits text color from the parent, removing the default blue */
+}
+
 .album:hover {
     transform: scale(1.05); /* Optional: Scale effect on hover */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Enhanced shadow on hover */
