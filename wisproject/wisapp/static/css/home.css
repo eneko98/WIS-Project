@@ -6,7 +6,7 @@ body {
 }
 
 /* General Section Styling for Full Width */
-#featured-artists, #latest-releases, #latest-albums, #news-announcements {
+#featured-artists, #latest-releases, #latest-albums, #news-announcements, #top-tracks {
     background-color: #fff;
     padding: 20px 30px; /* Increased padding on the sides */
     margin: 20px 20px; /* Consistent margin for some spacing from the screen edge */
@@ -16,7 +16,7 @@ body {
 }
 
 /* Section Title Styling for Consistency */
-#featured-artists h2, #latest-releases h2, #latest-albums h2, #news-announcements h2 {
+#featured-artists h2, #latest-releases h2, #latest-albums h2, #news-announcements h2, #top-tracks h2  {
     text-align: center;
     background-color: #333;
     color: #fff;
@@ -26,7 +26,7 @@ body {
 }
 
 /* Flex Layout Adjustments for Four Cards per Row */
-.artist-list, .release-list, .album-list, .news-list {
+.artist-list, .release-list, .album-list, .news-list, .track-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -61,7 +61,7 @@ body {
     color: inherit; /* Keeps text color consistent with the rest of your design */
 }
 
-.artist, .release, .album {
+.artist, .release, .album, .track {
     flex: 0 1 22%; /* Adjusts for four cards per row on larger screens */
     margin: 10px; /* Slightly reduced to fit four cards */
     padding: 10px;
@@ -86,7 +86,7 @@ body {
 }
 
 /* Text styling for consistency */
-.artist h4, .artist p, .release h4, .release p, .album h4, .album p {
+.artist h4, .artist p, .release h4, .release p, .album h4, .album p, .track h4, .track p {
     color: #333;
     font-size: 14px;
     margin: 5px 0;
@@ -110,7 +110,7 @@ body {
 }
 
 /* Hover effect for cards */
-.artist:hover, .release:hover, .album:hover {
+.artist:hover, .release:hover, .album:hover, .track:hover {
     transform: scale(1.05); /* Slightly increase the size */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Enhance the shadow for a lifting effect */
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for transform and shadow */
@@ -119,30 +119,30 @@ body {
 
 /* Responsive adjustments for better utilization of space */
 @media (min-width: 1200px) {
-    #featured-artists, #latest-releases, #latest-albums, #news-announcements {
+    #featured-artists, #latest-releases, #latest-albums, #news-announcements, #top-tracks {
         margin: 40px 10px; /* Less horizontal margin on very large screens */
     }
 }
 
 /* Responsive Adjustments */
 @media (max-width: 1200px) {
-    .artist, .release, .album {
+    .artist, .release, .album, .track {
         flex: 0 1 45%; /* Two cards per row on medium screens */
     }
 }
 
 @media (max-width: 768px) {
-    .artist, .release, .album {
+    .artist, .release, .album, .track {
         flex: 0 1 90%; /* One card per row on small screens, better use of space */
     }
 }
 
 @media (max-width: 768px) {
-    #featured-artists, #latest-releases, #latest-albums, #news-announcements {
+    #featured-artists, #latest-releases, #latest-albums, #news-announcements, #top-tracks  {
         margin: 20px 10px; /* Reduced margin on smaller screens */
     }
 
-    .artist, .release {
+    .artist, .release, .track {
         flex: 0 1 90%; /* 1 card per row on small screens, more horizontal space usage */
     }
 }

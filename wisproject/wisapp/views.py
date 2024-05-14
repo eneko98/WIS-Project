@@ -10,6 +10,7 @@ from .models import UserProfile, Event, Artist, Album, News
 from .forms import SignUpForm, UserProfileForm
 
 from .spotify_utils import get_spotify_client, fetch_latest_releases_by_artists
+from .lastfm_utils import get_top_tracks_by_artists
 
 def home(request):
     try:
@@ -20,11 +21,14 @@ def home(request):
         album_list = list(albums.values('id', 'name', 'cover_url', 'release_date', 'artist__name', 'spotify_url'))
         news_list = News.objects.all().order_by('-publication_date')[:10]
 
+        top_tracks = get_top_tracks_by_artists([artist['name'] for artist in artist_list])
+
     except Exception as e:
         latest_releases = []
         artist_list = []
         album_list = []
         news_list = []
+        top_tracks = []
         print(f"Error fetching data: {e}")
 
     context = {
@@ -32,6 +36,7 @@ def home(request):
         'latest_artists': artist_list,
         'latest_albums': album_list,
         'news_list': news_list,
+        'top_tracks': top_tracks,
     }
     return render(request, 'home.html', context)
 

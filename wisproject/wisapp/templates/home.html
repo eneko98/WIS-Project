@@ -54,6 +54,25 @@
         {% endfor %}
     </div>
 </section>
+<!-- Top Tracks Section -->
+<section id="top-tracks">
+    <h2>Top Tracks</h2>
+    <div class="track-list">
+        {% for track in top_tracks %}
+        <div class="track">
+            <div class="track-content">
+                <h4>{{ track.name }}</h4>
+                <p>By: {{ track.artist }}</p>
+                <p>Playcount: {{ track.playcount }}</p>
+                <p>Listeners: {{ track.listeners }}</p>
+                <a href="{{ track.url }}" target="_blank" class="btn btn-primary">Listen on Last.fm</a>
+            </div>
+        </div>
+        {% empty %}
+        <p>No top tracks found.</p>
+        {% endfor %}
+    </div>
+</section>
 <!-- News & Announcements Section -->
 <section id="news-announcements">
     <h2>News & Announcements</h2>
