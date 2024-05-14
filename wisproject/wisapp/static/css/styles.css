@@ -26,6 +26,11 @@ body, html {
     height: 65px; /* Adjust based on your preference */
   }
   
+  .navbar-brand span {
+    font-size: 1.5rem;
+    color: #fff;
+  }
+
   /* Further adjustments to the navbar items if needed */
   .nav-item {
     margin-left: 10px; /* Reduces space between nav items */
