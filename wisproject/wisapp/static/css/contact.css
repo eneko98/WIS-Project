@@ -6,7 +6,7 @@
   padding: 50px 0;
   height: calc(100vh - 100px);
   margin: 0 auto;
-  flex-wrap: wrap; /* Allow wrapping if needed */
+  flex-wrap: wrap;
 }
 
 .contact-section {
@@ -15,9 +15,9 @@
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-  flex: 1; /* Make each section take equal space */
-  margin: 10px; /* Add margin for spacing between sections */
-  min-width: 250px; /* Ensure a minimum width for responsiveness */
+  flex: 1;
+  margin: 10px;
+  min-width: 250px;
 }
 
 .contact-section h2 {
