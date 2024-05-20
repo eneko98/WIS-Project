@@ -1,57 +1,52 @@
-/* contact.css */
-
 .contact-container {
   display: flex;
-  flex-direction: column; /* Stack children vertically */
-  justify-content: center; /* Center children vertically */
-  align-items: center; /* Center children horizontally */
+  flex-direction: row; /* Arrange children side by side */
+  justify-content: space-between; /* Distribute space between children */
+  align-items: flex-start; /* Align items to the start */
   padding: 50px 0;
-  height: calc(100vh - 100px); /* Adjust the 100px based on your header/footer */
   margin: 0 auto;
+  flex-wrap: wrap; /* Allow wrapping if needed */
 }
 
 .contact-section {
   background-color: #fff;
   border-radius: 10px;
   padding: 20px;
-  margin-bottom: 30px; /* Space between cards */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-  width: 80%; /* Adjust this percentage as needed */
-  max-width: 300px; /* Adjust max width as needed */
-  margin-bottom: 30px; /* Adjust the space between the cards as needed */
+  flex: 1; /* Make each section take equal space */
+  margin: 10px; /* Add margin for spacing between sections */
+  min-width: 250px; /* Ensure a minimum width for responsiveness */
 }
 
-  
-  .contact-section h2 {
-    color: #007bff;
-  }
-  
-  .contact-form .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .contact-form .btn-primary {
-    width: 100%;
-  }
-  
-  .social-links {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .social-links li a {
-    color: #333;
-    text-decoration: none;
-    transition: color 0.2s ease-in-out;
-  }
-  
-  .social-links li a:hover {
-    color: #007bff;
-    text-decoration: underline;
-  }
-  
-  .social-links li {
-    margin-bottom: 10px;
-  }
-  
+.contact-section h2 {
+  color: #007bff;
+}
+
+.contact-form .form-group {
+  margin-bottom: 20px;
+}
+
+.contact-form .btn-primary {
+  width: 100%;
+}
+
+.social-links {
+  list-style: none;
+  padding: 0;
+}
+
+.social-links li a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.social-links li a:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.social-links li {
+  margin-bottom: 10px;
+}

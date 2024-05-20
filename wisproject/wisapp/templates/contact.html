@@ -4,19 +4,18 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/contact.css' %}">
 <div class="contact-container">
-<!-- Subscription Section -->
-<div class="contact-section">
-  <h2>Updates</h2>
-  <form id="subscribeForm" class="contact-form" method="post" action="{% url 'subscribe' %}">
-    {% csrf_token %}
-    <div class="form-group">
-      <label for="email">Email Address</label>
-      <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Subscribe</button>
-  </form>
-</div>
-
+  <!-- Subscription Section -->
+  <div class="contact-section">
+    <h2>Updates</h2>
+    <form id="subscribeForm" class="contact-form" method="post" action="{% url 'subscribe' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Subscribe</button>
+    </form>
+  </div>
 
   <!-- Follow Section -->
   <div class="contact-section">
@@ -31,7 +30,10 @@
   <!-- Address Section -->
   <div class="contact-section">
     <h2>Address</h2>
-    <p>Celestijnenlaan<br>Leuven, Belgium</p>
+    <p>Rue Wiertz 60</p>
+    <p>1047 Bruxelles</p>
+    <p>Belgium</p>
+    
   </div>
 </div>
 {% endblock %}

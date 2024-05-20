@@ -1,92 +1,87 @@
-/* styles.css */
-
 body, html {
-  display: flex;
-  flex-direction: column;
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  height: 100%;
 }
-  
-  main {
-    min-height: calc(100vh - 30px); /* Ensures the main content area is tall enough */
-    padding: 20px;
-    background-color: #f0f0f0; /* Light background for the content area */
-  }
-  
-  /* Navbar Styles */
 
-  .navbar-brand, .nav-link {
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-  }
-  
-  /* Adjust navbar brand image size if necessary */
-  .navbar-brand img {
-    height: 65px; /* Adjust based on your preference */
-  }
-  
-  .navbar-brand span {
-    font-size: 1.5rem;
-    color: #fff;
-  }
+main {
+  min-height: calc(100vh - 30px); /* Ensures the main content area is tall enough */
+  padding: 20px;
+  background-color: #f0f0f0; /* Light background for the content area */
+}
 
-  /* Further adjustments to the navbar items if needed */
-  .nav-item {
-    margin-left: 10px; /* Reduces space between nav items */
-  }
+/* Navbar Styles */
+.navbar-brand, .nav-link {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
 
-  nav {
-    background-color: #222; /* Dark background for the navbar */
-    color: #ffffff;
-    padding: 10px 20px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-  }
-  
-  nav img {
-    width: 120px; /* Adjust based on your logo's size */
-  }
-  
-  nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-  }
-  
-  nav li {
-    margin-left: 20px;
-  }
-  
-  nav a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 16px;
-  }
-  
-  /* Makes sure the toggle button appears on smaller screens */
-  .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-  }
-  
-  /* Footer Styles */
-  footer {
-    background-color: #222;
-    color: #ffffff;
-    text-align: center;
-    padding: 10px 20px;
-    margin-top: auto;
-    bottom: 0;
-    width: 100%;
-    padding: 0.05px 20px; /* Reduced padding makes the footer narrower */
-    font-size: 14px; /* Adjust font size as needed */
-  }
-  
-  footer a, footer span {
-    font-size: 0.875rem;
-  }
-  
+/* Adjust navbar brand image size if necessary */
+.navbar-brand img {
+  height: 65px; /* Adjust based on your preference */
+}
+
+.navbar-brand span {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+/* Further adjustments to the navbar items if needed */
+.nav-item {
+  margin-left: 10px; /* Reduces space between nav items */
+}
+
+nav {
+  background-color: #222; /* Dark background for the navbar */
+  color: #ffffff;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+nav img {
+  width: 120px; /* Adjust based on your logo's size */
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+nav li {
+  margin-left: 20px;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* Makes sure the toggle button appears on smaller screens */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Footer Styles */
+footer {
+  background-color: #222;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 20px;
+  margin-top: auto;
+  bottom: 0;
+  width: 100%;
+  padding: 0.05px 20px; /* Reduced padding makes the footer narrower */
+  font-size: 14px; /* Adjust font size as needed */
+}
+
+footer a, footer span {
+  font-size: 0.875rem;
+}

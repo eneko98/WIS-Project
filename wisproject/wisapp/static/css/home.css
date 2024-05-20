@@ -146,3 +146,61 @@ body {
         flex: 0 1 90%; /* 1 card per row on small screens, more horizontal space usage */
     }
 }
+
+/* New styles for news cards */
+
+.news-card {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    text-align: left; /* Ensure content is left-aligned */
+}
+
+.news-card h4 {
+    color: #333;
+    font-size: 1.5em;
+    margin: 0 0 10px;
+    line-height: 1.3;
+    width: 100%;
+    display: block; /* Ensure headline starts on a new line */
+    text-align: left; /* Ensure headline is left-aligned */
+}
+
+.news-card p {
+    color: #666;
+    font-size: 0.9em;
+    margin: 5px 0;
+    text-align: left; /* Ensure text is left-aligned */
+}
+
+.news-card .btn-primary {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.news-card .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.news-list {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+/* Add this if you want a smooth scroll effect */
+html {
+    scroll-behavior: smooth;
+}

@@ -14,12 +14,15 @@ from .lastfm_utils import get_top_tracks_by_artists
 
 def home(request):
     try:
-        artists = Artist.objects.all().order_by('-id')[:9]
+        artists = Artist.objects.all().order_by('-id')[:8]
         artist_list = list(artists.values('id', 'name', 'photo', 'genre', 'spotify_id'))
         latest_releases = fetch_latest_releases_by_artists([artist['name'] for artist in artist_list])
-        albums = Album.objects.select_related('artist').all().order_by('-release_date')[:9]
+        albums = Album.objects.select_related('artist').all().order_by('-release_date')[:8]
         album_list = list(albums.values('id', 'name', 'cover_url', 'release_date', 'artist__name', 'spotify_url'))
-        news_list = News.objects.all().order_by('-publication_date')[:10]
+        news_queryset = News.objects.all().order_by('-publication_date')
+        news_list = list(news_queryset.values('id', 'title', 'content', 'publication_date', 'image_url'))  
+        news_list = news_list[:10]  # Fetch only the latest 10 for initial display
+
 
         top_tracks = get_top_tracks_by_artists([artist['name'] for artist in artist_list])
 
