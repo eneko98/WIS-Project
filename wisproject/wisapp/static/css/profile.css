@@ -1,58 +1,54 @@
-/* Ensures content is centered and has some spacing from the header/footer */
 .profile-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px; /* Adjust based on your navbar height */
-  margin-bottom: 50px; /* Space from the footer */
+  margin-top: 100px;
+  margin-bottom: 50px;
 }
 
 .profile-picture {
-  width: 150px; /* Adjust the size as needed */
-  height: 150px; /* Maintain a square aspect ratio */
-  border-radius: 50%; /* Makes the image circular */
-  object-fit: cover; /* Ensures the image covers the area well */
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
   margin-bottom: 20px;
 }
 
-/* Personal info styling */
 .personal-info, .details {
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 20px;
   margin: 10px 0;
-  width: 80%; /* Adjust based on your preference */
-  max-width: 960px; /* Increased to allow more space for content */
+  width: 80%;
+  max-width: 960px;
 }
 
 .personal-info h2, .details h3 {
-  color: #333; /* Dark text for contrast */
+  color: #333;
 }
 
 .personal-info a, .details a {
-  color: #007bff; /* Bootstrap primary color for consistency */
+  color: #007bff;
   text-decoration: none;
 }
 
-/* Social media icons */
 .social-links img {
-  width: 32px; /* Set a fixed width for all icons */
-  height: 32px; /* Set a fixed height for all icons */
+  width: 32px;
+  height: 32px;
   margin: 0 10px;
-  object-fit: contain; /* This will ensure that the image's aspect ratio is preserved */
+  object-fit: contain;
 }
 
-/* Ensures links are horizontally aligned */
 .social-links {
   display: flex;
   justify-content: center;
 }
 
 .details h3 {
-  width: 100%;      /* Ensures the heading takes full width */
-  text-align: center; /* Aligns the text center */
-  margin: 0 auto;   /* Centers the block and removes margin to align it perfectly */
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
   background-color: #333;
   color: #fff;
   padding: 10px;
@@ -61,10 +57,10 @@
 
 .details .container {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* two columns for two sections */
-  grid-template-rows: auto auto; /* automatically adjust the height of rows */
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
   gap: 20px;
-  width: 100%; /* ensure the container uses the full width available */
+  width: 100%;
 }
 
 .event-section, .artist-section, .album-section {
@@ -75,11 +71,11 @@
 }
 
 .album-section {
-  grid-column: 1 / -1; /* span from the first to the last column */
+  grid-column: 1 / -1;
 }
 
 .album-section h3 {
-  text-align: center; /* Only centers text for album section heading */
+  text-align: center;
 }
 
 .event-list, .artist-list, .album-list {
@@ -102,13 +98,13 @@
 }
 
 .artist-name {
-  font-weight: bold; /* This will apply bold styling */
+  font-weight: bold;
   margin-right: 10px;
 }
 
 .album-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns per row */
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
 
@@ -121,54 +117,53 @@
 }
 
 .album-list img {
-  width: 100%; /* Allow image to maintain aspect ratio */
-  max-width: 300px; /* Adjust max width to fit better */
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 8px; /* Styling */
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease; /* Smooth scaling animation */
+  transition: transform 0.3s ease;
 }
 
 .album-list img:hover {
-  transform: scale(1.05); /* Slightly less zoom to avoid layout shift */
+  transform: scale(1.05);
 }
 
 .album-title {
-  text-align: center; /* Ensure title is centered */
-  width: 100%; /* Make sure title takes full width */
-  padding: 10px 0; /* Add padding around the title */
+  text-align: center;
+  width: 100%;
+  padding: 10px 0;
 }
 
 .edit-profile-btn {
   display: inline-block;
-  background-color: #007bff !important; /* Ensures this background color takes precedence */
-  color: #ffffff !important; /* Ensures the text color is white */
-  padding: 10px 20px; /* Padding to increase the size */
-  border-radius: 5px; /* Rounded corners */
-  text-decoration: none !important; /* Remove underline from link */
-  transition: background-color 0.2s; /* Smooth transition for hover effect */
+  background-color: #007bff !important;
+  color: #ffffff !important;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none !important;
+  transition: background-color 0.2s;
 }
 
 .edit-profile-btn:hover, .edit-profile-btn:focus {
-  background-color: #0056b3 !important; /* Darker shade on hover/focus for feedback */
+  background-color: #0056b3 !important;
   color: #ffffff !important;
-  text-decoration: none !important; /* Ensure text remains not underlined */
+  text-decoration: none !important;
 }
 
 .event-link {
-  color: #333 !important; /* grey-black color */
-  text-decoration:none !important; /* no underline by default */
-  transition: color 0.3s ease; /* smooth color transition */
+  color: #333 !important;
+  text-decoration:none !important;
+  transition: color 0.3s ease;
 }
 
 .event-link:hover, event-link:focus {
-  color: #555 !important; /* slightly lighter grey-black on hover */
-  text-decoration: underline !important; /* underline on hover */
+  color: #555 !important;
+  text-decoration: underline !important;
 }
 
-/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
   .details .container {
-    grid-template-columns: 1fr; /* Single column on small screens */
+    grid-template-columns: 1fr;
   }
 }

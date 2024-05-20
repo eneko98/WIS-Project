@@ -1,4 +1,3 @@
-# lastfm_utils.py
 import requests
 from django.conf import settings
 

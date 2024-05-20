@@ -2,15 +2,11 @@
 {% load static %}
 
 {% block content %}
-<!-- Link to the events-specific stylesheet -->
 <link href="{% static 'css/events.css' %}" rel="stylesheet">
-
 <div class="main-container">
-    <!-- Header Section -->
     <div class="header">
         <h1>Events</h1>
     </div>
-
     <!-- Filter Section -->
     <div class="container mt-4">
         <form method="GET" action="{% url 'events' %}">
@@ -48,7 +44,6 @@
             </div>
         </form>
     </div>
-
     <!-- Event Section -->
     <div id="filteredEventsSection" class="container mt-4">
         <div class="container container-border">

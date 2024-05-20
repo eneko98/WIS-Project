@@ -2,11 +2,11 @@
 
 .contact-container {
   display: flex;
-  flex-direction: column; /* Stack children vertically */
-  justify-content: center; /* Center children vertically */
-  align-items: center; /* Center children horizontally */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 50px 0;
-  height: calc(100vh - 100px); /* Adjust the 100px based on your header/footer */
+  height: calc(100vh - 100px);
   margin: 0 auto;
 }
 
@@ -14,15 +14,14 @@
   background-color: #fff;
   border-radius: 10px;
   padding: 20px;
-  margin-bottom: 30px; /* Space between cards */
+  margin-bottom: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-  width: 80%; /* Adjust this percentage as needed */
-  max-width: 300px; /* Adjust max width as needed */
-  margin-bottom: 30px; /* Adjust the space between the cards as needed */
+  width: 80%;
+  max-width: 300px;
+  margin-bottom: 30px;
 }
 
-  
   .contact-section h2 {
     color: #007bff;
   }
