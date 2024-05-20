@@ -14,7 +14,7 @@
                 <div class="card-body text-center">
                     <h5 class="card-title">{{ artist.name }}</h5>
                     <p class="card-subtitle mb-2 text-muted">{{ artist.genre }}</p>
-                    <p class="card-text">{{ artist.bio }}</p>
+                    <!-- <p class="card-text">{{ artist.bio }}</p> -->
                     {% if artist in request.user.userprofile.favorite_artists.all %}
                     <a href="{% url 'remove-artists-from-favorites' artist.id %}" class="btn btn-outline-danger favorite-toggle">
                         ★ Remove from Favorites

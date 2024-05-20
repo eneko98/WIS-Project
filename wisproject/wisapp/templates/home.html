@@ -80,8 +80,9 @@
         {% for news in news_list %}
         <div class="news-card">
             <h4>{{ news.title }}</h4>
-            <p>{{ news.content|truncatewords:30 }}</p>
+            <!-- <p>{{ news.content|truncatewords:30 }}</p> -->
             <p>Published on: {{ news.publication_date|date:"Y-m-d" }}</p>
+            <!-- <img src="{{ news.image_url}}"> -->
             <a href="{% url 'news_detail' news.id %}" class="btn btn-primary">Read More</a>
         </div>
         {% empty %}

@@ -15,7 +15,7 @@ from .lastfm_utils import get_top_tracks_by_artists
 def home(request):
     try:
         artists = Artist.objects.all().order_by('-id')[:9]
-        artist_list = list(artists.values('id', 'name', 'photo', 'genre', 'bio', 'spotify_id'))
+        artist_list = list(artists.values('id', 'name', 'photo', 'genre', 'spotify_id'))
         latest_releases = fetch_latest_releases_by_artists([artist['name'] for artist in artist_list])
         albums = Album.objects.select_related('artist').all().order_by('-release_date')[:9]
         album_list = list(albums.values('id', 'name', 'cover_url', 'release_date', 'artist__name', 'spotify_url'))
@@ -41,7 +41,7 @@ def home(request):
     return render(request, 'home.html', context)
 
 def artists(request):
-    all_artists = Artist.objects.prefetch_related('albums', 'events').all()
+    all_artists = Artist.objects.prefetch_related('albums', 'events')
     return render(request, 'artists.html', {'artists': all_artists})
 
 def artist_detail(request, artist_id):
