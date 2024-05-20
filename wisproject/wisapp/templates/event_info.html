@@ -19,6 +19,13 @@
     </div>
 </div>
 
+<!-- Include Leaflet JavaScript library at the bottom -->
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+<!-- Pass the location data to JavaScript -->
+<script>
+    var eventLocation = "{{ event.location|escapejs }}";
+</script>
+
 <script src="{% static 'javascript/event_info.js' %}"></script>
 {% endblock %}
