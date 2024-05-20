@@ -51,7 +51,6 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h5>{{ album.name }}</h5>
                     <p>{{ album.genre }} (Released on {{ album.release_date }})</p>
-                    <!-- Favorite button -->
                     {% if album in request.user.userprofile.favorite_albums.all %}
                     <a href="{% url 'remove-album-from-favorites' album.id %}" class="btn btn-danger albums-favorite-toggle" data-album-id="{{ album.id }}" data-add-url="{% url 'add-album-to-favorites' album.id %}" data-remove-url="{% url 'remove-album-from-favorites' album.id %}">
                         ★
@@ -65,19 +64,15 @@
             </div>
             {% endfor %}
         </div>
-        <!-- Previous Control -->
         <a class="carousel-control-prev" href="#albumsCarousel" role="button" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true">&#10094;</span> <!-- Unicode arrow -->
             <span class="visually-hidden">Previous</span>
         </a>
-
-        <!-- Next Control -->
         <a class="carousel-control-next" href="#albumsCarousel" role="button" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true">&#10095;</span> <!-- Unicode arrow -->
             <span class="visually-hidden">Next</span>
         </a>
     </div>
-
     <!-- Related Artists Section -->
     <div class="related-artists">
         <h3>Related Artists</h3>
@@ -96,7 +91,6 @@
             {% endfor %}
         </div>
     </div>
-    
     <!-- Upcoming Events -->
     <h3>Upcoming Events</h3>
     <div class="card card-body mb-3 shadow">

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', function (event) {
             event.preventDefault();
             const url = this.href;
-            const btn = this; // Reference to the button
+            const btn = this;
     
             fetch(url, { method: 'GET' })
             .then(response => response.json())

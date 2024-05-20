@@ -3,26 +3,24 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50%; /* Adjust width as needed */
+    width: 50%;
     padding: 20px;
     box-sizing: border-box;
-    background-color: #fff; /* Adjust to match your color theme */
+    background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border-radius: 8px;
     text-align: center;
   }
   
-  /* Adjust the styles below to match your theme */
   .message-box h2 {
-    color: #000; /* Title color */
+    color: #000;
     margin-bottom: 10px;
   }
   
   .message-box p {
-    color: #555; /* Paragraph text color */
+    color: #555;
   }
   
-  /* Ensure the body has full height and the box can be centered vertically */
   html, body {
     height: 100%;
     margin: 0;

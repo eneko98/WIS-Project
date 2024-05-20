@@ -1,9 +1,10 @@
 .contact-container {
   display: flex;
-  flex-direction: row; /* Arrange children side by side */
-  justify-content: space-between; /* Distribute space between children */
-  align-items: flex-start; /* Align items to the start */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 50px 0;
+  height: calc(100vh - 100px);
   margin: 0 auto;
   flex-wrap: wrap; /* Allow wrapping if needed */
 }

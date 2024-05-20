@@ -10,7 +10,6 @@
 </head>
 <body>
     <header>
-        <!-- Bootstrap Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'home' %}">
@@ -60,7 +59,6 @@
 
     <main class="mt-5 pt-3">
         {% block content %}
-        <!-- Content goes here -->
         {% endblock content %}
     </main>
 
@@ -69,7 +67,6 @@
 
     
     {% block additional_scripts %}
-    <!-- Additional scripts go here -->
     {% endblock additional_scripts %}
 </body>
 </html>

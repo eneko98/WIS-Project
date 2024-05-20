@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-
 <div class="profile-content">
     <div class="personal-info">
         <!-- Personal Info -->
@@ -32,7 +30,6 @@
           <div class="event-section">
               <h3>Upcoming Events</h3>
               <ul class="event-list">
-                  <!-- Dynamically list events here -->
                   {% for event in profile.upcoming_events.all %}
                     <li>
                       <a class="event-link" href="{% url 'event_detail' event.id %}">
@@ -44,13 +41,11 @@
               </ul>
           </div>
           {% endif %}
-      
           <!-- Favorite Artists -->
           {% if profile.favorite_artists.exists %}
           <div class="artist-section">
             <h3>Favorite Artists</h3>
             <ul class="artist-list" id="favoriteAlbumList">
-              <!-- Dynamically list artists here -->
               {% for artist in profile.favorite_artists.all %}
                 <li>
                   <a href="{% url 'artist_detail' artist.id %}" class="event-link artist-name">
@@ -61,17 +56,14 @@
             </ul>
           </div>
           {% endif %}
-
-      
           <!-- Favorite Albums -->
           {% if profile.favorite_albums.exists %}
           <div class="album-section">
             <h3>Favorite Albums</h3>
             <ul class="album-list" id="favoriteAlbumList">
-              <!-- Dynamically list albums here -->
               {% for album in profile.favorite_albums.all %}
               <li id="album_{{ album.id }}">
-                <a href="{{ album.spotify_url }}" target="_blank"> <!-- Opens Spotify link in a new tab -->
+                <a href="{{ album.spotify_url }}" target="_blank">
                   <span class="album-title">{{ album.title }}</span>
                   <img src="{{ album.cover_url }}" alt="Cover image for {{ album.title }}">
                 </a>
@@ -82,6 +74,5 @@
           {% endif %}
         </div>
       </section>
-      
 </div>
 {% endblock %}

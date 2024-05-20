@@ -3,14 +3,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     favoriteButtons.forEach(button => {
         button.addEventListener('click', function (e) {
-            e.preventDefault();  // Prevent default link behavior
+            e.preventDefault();
 
             const actionUrl = this.getAttribute('href');
 
             fetch(actionUrl, {
                 method: 'POST',
                 headers: {
-                    'X-CSRFToken': getCookie('csrftoken'), // Handle CSRF token
+                    'X-CSRFToken': getCookie('csrftoken'), 
                     'Content-Type': 'application/json',
                 },
             })
